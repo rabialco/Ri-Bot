@@ -36,25 +36,31 @@ public class RiBotApplication extends SpringBootServletInitializer {
     public void handleTextEvent(MessageEvent<TextMessageContent> messageEvent){
         String pesan = messageEvent.getMessage().getText().toLowerCase();
         String[] pesanSplit = pesan.split(" ");
-        if(pesanSplit[0].equals("apakah")){
-            String jawaban = getRandomJawaban();
-            String replyToken = messageEvent.getReplyToken();
-            balasChatDenganRandomJawaban(replyToken, jawaban);
+        String jawaban;
+        switch (pesanSplit[0]){
+            case("alco"):
+                jawaban = "Lah nama salah satu Developer Ri-Bot nih";
+                break;
+            case("salman"):
+                jawaban = "Lah nama salah satu Developer Ri-Bot nih";
+                break;
+            case("ryan"):
+                jawaban = "Lah nama salah satu Developer Ri-Bot nih";
+                break;
+            case("yasmin"):
+                jawaban = "Lah nama salah satu Developer Ri-Bot nih";
+                break;
+            case("raul"):
+                jawaban = "Lah nama salah satu Developer Ri-Bot nih";
+                break;
+            default:
+                jawaban = "Ri-Bot sedang dalam tahap pengembangan!";
         }
+        String replyToken = messageEvent.getReplyToken();
+        handleReplyEvent(replyToken, jawaban);
     }
 
-    private String getRandomJawaban(){
-        String jawaban = "";
-        int random = new Random().nextInt();
-        if(random%2==0){
-            jawaban = "Ya";
-        } else{
-            jawaban = "Nggak";
-        }
-        return jawaban;
-    }
-
-    private void balasChatDenganRandomJawaban(String replyToken, String jawaban){
+    private void handleReplyEvent(String replyToken, String jawaban){
         TextMessage jawabanDalamBentukTextMessage = new TextMessage(jawaban);
         try {
             lineMessagingClient
