@@ -29,7 +29,7 @@ public class RiBotApplication extends SpringBootServletInitializer {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(RiBotApplicationgit.class, args);
+        SpringApplication.run(RiBotApplication.class, args);
     }
 
     @EventMapping
