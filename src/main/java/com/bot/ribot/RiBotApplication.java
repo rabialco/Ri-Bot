@@ -53,8 +53,16 @@ public class RiBotApplication extends SpringBootServletInitializer {
             case("raul"):
                 jawaban = "Lah nama salah satu Developer Ri-Bot nih";
                 break;
+            case("/showSummary"):
+                // Mengambil database dari detail session yang dibuat pada command /makeSession
+                jawaban = "Summary sedang ditunjukkan!\nMaaf command ini masih dalam tahap pengembangan";
+                break;
+            case("/showMenu"):
+                // Menunjukkan menu berisi command yang dapat dilakukan user
+                jawaban = "Command Menu :\n1. /register\n2. /makeSession\n3. /findRival\n4. /remindRival\n5. /showSummary\nUntuk memunculkan menu ini lagi ketik : /showMenu";
+                break;
             default:
-                jawaban = "Ri-Bot sedang dalam tahap pengembangan!";
+                jawaban = "Maaf, command yang anda berikan salah:(\nUntuk mengetahui command yang dapat anda lakukan ketik : /showMenu";
         }
         String replyToken = messageEvent.getReplyToken();
         handleReplyEvent(replyToken, jawaban);
