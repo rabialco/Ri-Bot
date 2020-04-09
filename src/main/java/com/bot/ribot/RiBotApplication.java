@@ -12,8 +12,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-
-import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 @SpringBootApplication
@@ -34,9 +32,13 @@ public class RiBotApplication extends SpringBootServletInitializer {
 
     @EventMapping
     public void handleTextEvent(MessageEvent<TextMessageContent> messageEvent){
-        String pesan = messageEvent.getMessage().getText().toLowerCase();
+        String pesan = messageEvent.getMessage().getText();
         String[] pesanSplit = pesan.split(" ");
         String jawaban;
+        if(pesan.charAt(0) != ('/')) {
+            pesan.toLowerCase();
+        }
+
         switch (pesanSplit[0]){
             case("alco"):
                 jawaban = "Lah nama salah satu Developer Ri-Bot nih";
@@ -62,7 +64,7 @@ public class RiBotApplication extends SpringBootServletInitializer {
                 jawaban = "Command Menu :\n1. /register\n2. /makeSession\n3. /findRival\n4. /remindRival\n5. /showSummary\nUntuk memunculkan menu ini lagi ketik : /showMenu";
                 break;
             default:
-                jawaban = "Maaf, command yang anda berikan salah:(\nUntuk mengetahui command yang dapat anda lakukan ketik : /showMenu";
+                jawaban = "Maaf, command yang anda berikan salah:(\nUntuk mengetahui command yang dapat anda lakukan ketik :\n/showMenu";
         }
         String replyToken = messageEvent.getReplyToken();
         handleReplyEvent(replyToken, jawaban);
