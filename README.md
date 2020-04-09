@@ -1,5 +1,5 @@
-# Advance Programming Group Project
-# Ri-Bot Line Chatbot
+# **Ri-Bot Line Chatbot**
+*Advance Programming's* Final Project 2019/2020 Term 1
 ## Pipelines Status
 [![pipeline status](https://gitlab.com/ProjectNara/project-akhir-ppw/badges/master/pipeline.svg)](https://gitlab.com/rabialco/ri-bot/commits/master)
 
@@ -21,11 +21,11 @@ Line ID : @810znrgf
 
 ## Documentation
 Herokuapp Link : https://line-bot-ri-bot.herokuapp.com/
-Gitlab Link : https://gitlab.com/rabialco/ri-bot 
+<br/>Gitlab Link : https://gitlab.com/rabialco/ri-bot 
 
 ## Contributor
-1. Muhammad Salman Al-farisi - 1806133843 - muhammadsalman.1505@gmail.com
-2. Rabialco Argana - 1806141416 - rabialco@gmail.com
-3. Raul Arrafi Delfarra - 1806205142
-4. Ryan Karyadiputera - 1806205211 - ryankaryadiputera@gmail.com
-5. Yasmin Adelia Puti Chaidir - 1806141486 - yasminadelia@yahoo.co.id
+1. Muhammad Salman Al-farisi - 1806133843 - **[AlphaRazra](https://gitlab.com/AlphaRazra)**
+2. Rabialco Argana - 1806141416 - **[rabialco](https://gitlab.com/rabialco)**
+3. Raul Arrafi Delfarra - 1806205142 - **[Raul](https://gitlab.com/)**
+4. Ryan Karyadiputera - 1806205211 -  **[SetiaMDN](https://gitlab.com/SetiaMDN)**
+5. Yasmin Adelia Puti Chaidir - 1806141486 - **[yasminadelia](https://gitlab.com/yasminadelia)**

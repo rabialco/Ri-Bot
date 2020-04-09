@@ -38,7 +38,7 @@ public class RiBotApplication extends SpringBootServletInitializer {
         String[] pesanSplit = pesan.split(" ");
         String jawaban;
         if(Objects.equals(pesan.charAt(0), '/')) {
-            pesan.toLowerCase();
+            pesanSplit[0].toLowerCase();
         }
 
         switch (pesanSplit[0]){
