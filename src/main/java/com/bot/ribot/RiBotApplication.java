@@ -12,6 +12,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 @SpringBootApplication
@@ -35,7 +37,7 @@ public class RiBotApplication extends SpringBootServletInitializer {
         String pesan = messageEvent.getMessage().getText();
         String[] pesanSplit = pesan.split(" ");
         String jawaban;
-        if(pesan.charAt(0) != ('/')) {
+        if(Objects.equals(pesan.charAt(0), '/')) {
             pesan.toLowerCase();
         }
 
