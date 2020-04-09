@@ -37,24 +37,26 @@ public class RiBotApplication extends SpringBootServletInitializer {
         String pesan = messageEvent.getMessage().getText();
         String[] pesanSplit = pesan.split(" ");
         String jawaban;
-        if(Objects.equals(pesan.charAt(0), '/')) {
-            pesanSplit[0].toLowerCase();
-        }
 
         switch (pesanSplit[0]){
             case("alco"):
+            case("Alco"):
                 jawaban = "Lah nama salah satu Developer Ri-Bot nih";
                 break;
             case("salman"):
+            case("Salman"):
                 jawaban = "Lah nama salah satu Developer Ri-Bot nih";
                 break;
             case("ryan"):
+            case("Ryan"):
                 jawaban = "Lah nama salah satu Developer Ri-Bot nih";
                 break;
             case("yasmin"):
+            case("Yasmin"):
                 jawaban = "Lah nama salah satu Developer Ri-Bot nih";
                 break;
             case("raul"):
+            case("Raul"):
                 jawaban = "Lah nama salah satu Developer Ri-Bot nih";
                 break;
             case("/showSummary"):
