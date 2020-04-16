@@ -29,11 +29,11 @@ test {
     useJUnitPlatform()
 }
 
-buildscript {
-    ext.junitVersion = '5.6.0'
-    ext.checkstyleVersion = '8.29'
-    ext.checkstyleConfig = 'google_checks.xml'
-}
+//buildscript {
+//    ext.junitVersion = '5.6.0'
+//    ext.checkstyleVersion = '8.29'
+//    ext.checkstyleConfig = 'google_checks.xml'
+//}
 
 
 tasks.withType(Checkstyle) {
@@ -44,14 +44,14 @@ tasks.withType(Checkstyle) {
     }
 }
 
-subprojects {
-    apply plugin: 'java'
-    apply plugin: 'application'
-    apply plugin: 'checkstyle'
-    checkstyle {
-        toolVersion = checkstyleVersion
-        config = resources.text.fromFile(configDirectory.file("${checkstyleConfig}"))
-        maxWarnings = 0  // Fail the build if there are any warnings
-        sourceSets = []  // Do not run checkstyle on gradle build/check
-    }
-}
+//subprojects {
+//    apply plugin: 'java'
+//    apply plugin: 'application'
+//    apply plugin: 'checkstyle'
+//    checkstyle {
+//        toolVersion = checkstyleVersion
+//        config = resources.text.fromFile(configDirectory.file("${checkstyleConfig}"))
+//        maxWarnings = 0  // Fail the build if there are any warnings
+//        sourceSets = []  // Do not run checkstyle on gradle build/check
+//    }
+//}
