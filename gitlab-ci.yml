@@ -47,7 +47,7 @@ Test:
     - cat ri-bot/build/reports/jacoco/test/html/index.html
 
 
-Production:
+Deployment:
   image: ruby:2.4
   stage: deploy
   only:
