@@ -70,6 +70,8 @@ public class RiBotApplication extends SpringBootServletInitializer {
             case("/makeSession"):
                 jawaban = "Anda telah memilih untuk membuat match\n\n\n\n. Fitur ini sedang dalam pembuatan";
                 break;
+            case("/register"):
+                jawaban = "Anda telah memilih untuk melakukan pendaftaran di Ri-Bot\n\n\n\n. Fitur ini masih dalam tahap pengembanagan";
             default:
                 jawaban = "Maaf, command yang anda berikan salah:(\nUntuk mengetahui command yang dapat anda lakukan ketik :\n/showMenu";
         }
