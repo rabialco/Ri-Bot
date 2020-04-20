@@ -1,3 +1,9 @@
+buildscript {
+    ext.junitVersion = '5.6.0'
+    ext.checkstyleVersion = '8.29'
+    ext.checkstyleConfig = 'config/checkstyle/google_checks.xml'
+}
+
 plugins {
     id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
@@ -29,20 +35,14 @@ test {
     useJUnitPlatform()
 }
 
-//buildscript {
-//    ext.junitVersion = '5.6.0'
-//    ext.checkstyleVersion = '8.29'
-//    ext.checkstyleConfig = 'google_checks.xml'
+
+//tasks.withType(Checkstyle) {
+//    reports {
+//        xml.enabled false
+//        html.enabled true
+//        html.stylesheet resources.text.fromFile('config/checkstyle/google_checks.xml')
+//    }
 //}
-
-
-tasks.withType(Checkstyle) {
-    reports {
-        xml.enabled false
-        html.enabled true
-        html.stylesheet resources.text.fromFile('config/checkstyle/google_checks.xml')
-    }
-}
 
 subprojects {
     apply plugin: 'java'
