@@ -4,16 +4,17 @@ buildscript {
     ext.checkstyleConfig = 'config/checkstyle/google_checks.xml'
 }
 
-group = 'com.bot'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
-
 plugins {
     id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
     id 'jacoco'
+    id 'checkstyle'
 }
+
+group = 'com.bot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
 
 apply plugin: 'jacoco'
 
@@ -73,7 +74,6 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-
 //tasks.withType(Checkstyle) {
 //    reports {
 //        xml.enabled false
