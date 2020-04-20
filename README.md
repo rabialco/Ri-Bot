@@ -1,10 +1,10 @@
 # **Ri-Bot Line Chatbot**
 *Advance Programming's* Final Project 2019/2020 Term 1
 ## Pipelines Status
-[![pipeline status](https://gitlab.com/rabialco/ri-bot/badges/master/pipeline.svg)](https://gitlab.com/rabialco/ri-bot/commits/master)
+[![pipeline status](https://gitlab.com/rabialco/ri-bot/badges/master/pipeline.svg)](https://gitlab.com/rabialco/ri-bot/-/commits/master)
 
 ## Code Coverage
-[![coverage report](https://gitlab.com/rabialco/ri-bot/badges/master/coverage.svg)](https://gitlab.com/rabialco/ri-bot/commits/master)
+[![coverage report](https://gitlab.com/rabialco/ri-bot/badges/master/coverage.svg)](https://gitlab.com/rabialco/ri-bot/-/commits/master)
 
 ## Project Description
 Ri-Bot is a chatbot program that offer a feature to find your rival to play a game of 1v1 easily, but fast and right on target. This chatbot ask about what the game you want to play, when you want to play the game, and where you want to play the game and find for you an opponent that have same desires. Also, this chatbot have a feature to remind your rival about your matchmaking session. For now, the users of Ri-Bot are restricted for UI student.
