@@ -38,11 +38,15 @@ configurations {
     }
 }
 
+apply plugin: 'java'
+apply plugin: 'application'
 apply plugin: 'checkstyle'
 
 checkstyle {
     toolVersion = checkstyleVersion
-    config = resources.text.fromFile(configDirectory.file("${checkstyleConfig}"))
+    config = resources.text.fromFile(configDirectory.file("google_checks.xml"))
+//    configFile = file("ri-bot/config/checkstyle/google_checks.xml")
+//    config = resources.text.fromFile(configDirectory.file("${checkstyleConfig}"))
     maxWarnings = 0  // Fail the build if there are any warnings
     sourceSets = []  // Do not run checkstyle on gradle build/check
 }
