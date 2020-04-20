@@ -16,11 +16,6 @@ stages:
   - test
   - deploy
 
-#cache:
-#  paths:
-#    - .gradle/wrapper
-#    - .gradle/caches
-
 build:
   stage: build
   script:
@@ -28,7 +23,7 @@ build:
 
 checkstyle:
   stage: test
-  script: gradle checkstyle
+  script: gradle checkstyleMain checkstyleTest
   allow_failure: true
   cache:
     key: "$CI_COMMIT_REF_NAME"
@@ -46,8 +41,6 @@ test:
       - .gradle
   rules:
     - if: '$CI_PROJECT_NAMESPACE != "ri-bot/"'
-
-
 
 Deployment:
   image: ruby:2.4
