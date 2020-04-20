@@ -4,11 +4,47 @@ buildscript {
     ext.checkstyleConfig = 'config/checkstyle/google_checks.xml'
 }
 
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'application'
+    apply plugin: 'checkstyle'
+    apply plugin: 'jacoco'
+    checkstyle {
+        toolVersion = checkstyleVersion
+        config = resources.text.fromFile(configDirectory.file("${checkstyleConfig}"))
+        maxWarnings = 0  // Fail the build if there are any warnings
+        sourceSets = []  // Do not run checkstyle on gradle build/check
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
+    id 'jacoco'
+    id 'checkstyle'
 }
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+test.finalizedBy jacocoTestReport
+
+jacocoTestReport {
+    reports {
+        html.enabled true
+    }
+
+    // Gradle > 6.0 not deprecated
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: [])
+        }))
+    }
+}
+
 
 group = 'com.bot'
 version = '0.0.1-SNAPSHOT'
@@ -35,14 +71,11 @@ test {
     useJUnitPlatform()
 }
 
-subprojects {
-    apply plugin: 'java'
-    apply plugin: 'application'
-    apply plugin: 'checkstyle'
-    checkstyle {
-        toolVersion = checkstyleVersion
-        config = resources.text.fromFile(configDirectory.file("${checkstyleConfig}"))
-        maxWarnings = 0  // Fail the build if there are any warnings
-        sourceSets = []  // Do not run checkstyle on gradle build/check
-    }
-}
+
+//tasks.withType(Checkstyle) {
+//    reports {
+//        xml.enabled false
+//        html.enabled true
+//        html.stylesheet resources.text.fromFile('config/checkstyle/google_checks.xml')
+//    }
+//}

@@ -34,7 +34,11 @@ checkstyle:
 
 test:
   stage: test
-  script: gradle :test
+  script:
+    - gradle check
+    - gradle jacocoTestReport
+    - cat build/reports/jacoco/test/html/index.html
+
   cache:
     key: "$CI_COMMIT_REF_NAME"
     paths:
