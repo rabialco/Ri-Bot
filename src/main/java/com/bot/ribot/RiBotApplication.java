@@ -8,6 +8,9 @@ import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,6 +23,10 @@ public class RiBotApplication extends SpringBootServletInitializer {
 
     @Autowired
     private LineMessagingClient lineMessagingClient;
+
+    LogManager lgmngr = LogManager.getLogManager();
+    Logger log = lgmngr.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
@@ -41,27 +48,28 @@ public class RiBotApplication extends SpringBootServletInitializer {
         String pesan = messageEvent.getMessage().getText();
         String[] pesanSplit = pesan.split(" ");
         String jawaban;
+        String devName = "Lah nama salah satu Developer Ri-Bot nih";
 
         switch (pesanSplit[0]) {
             case("alco"):
             case("Alco"):
-                jawaban = "Lah nama salah satu Developer Ri-Bot nih";
+                jawaban = devName;
                 break;
             case("salman"):
             case("Salman"):
-                jawaban = "Lah nama salah satu Developer Ri-Bot nih";
+                jawaban = devName;
                 break;
             case("ryan"):
             case("Ryan"):
-                jawaban = "Lah nama salah satu Developer Ri-Bot nih";
+                jawaban = devName;
                 break;
             case("yasmin"):
             case("Yasmin"):
-                jawaban = "Lah nama salah satu Developer Ri-Bot nih";
+                jawaban = devName;
                 break;
             case("raul"):
             case("Raul"):
-                jawaban = "Lah nama salah satu Developer Ri-Bot nih";
+                jawaban = devName;
                 break;
             case("/showSummary"):
                 // Mengambil database dari detail session yang dibuat pada command /makeSession
@@ -101,7 +109,8 @@ public class RiBotApplication extends SpringBootServletInitializer {
                     .replyMessage(new ReplyMessage(replyToken, jawabanDalamBentukTextMessage))
                     .get();
         } catch (InterruptedException | ExecutionException e) {
-            System.out.println("Ada error saat ingin membalas chat");
+            log.log(Level.INFO, "Error while sending message");
+            Thread.currentThread().interrupt();
         }
     }
 
