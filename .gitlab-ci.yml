@@ -21,30 +21,21 @@ stages:
 #    - .gradle/wrapper
 #    - .gradle/caches
 
-Build:
+build:
   stage: build
   script:
     - gradle build
 
 checkstyle:
   stage: test
-  script: gradle checkstyleMain checkstyleTest
+  script: gradle :src:checkstyleTest :src:checkstyleMain
   allow_failure: true
   cache:
     key: "$CI_COMMIT_REF_NAME"
-    policy: pull
     paths:
-      - assignment-*/build
-      - assignment-*/.gradle
+      - .gradle
   rules:
     - if: '$CI_PROJECT_NAMESPACE != "ri-bot/"'
-
-Test:
-  stage: test
-  script:
-    - gradle check
-    - gradle jacocoTestReport
-    - cat ri-bot/build/reports/jacoco/test/html/index.html
 
 
 Deployment:
