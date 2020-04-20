@@ -7,14 +7,12 @@ import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
+import java.util.concurrent.ExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-
-import java.util.Objects;
-import java.util.concurrent.ExecutionException;
 
 @SpringBootApplication
 @LineMessageHandler
@@ -32,13 +30,19 @@ public class RiBotApplication extends SpringBootServletInitializer {
         SpringApplication.run(RiBotApplication.class, args);
     }
 
+    /**
+     * Handle the user's input from the input arguments.
+     *
+     * @case                   the handleTextEvent case input.
+     * @default                if user's input contains case.
+     */
     @EventMapping
-    public void handleTextEvent(MessageEvent<TextMessageContent> messageEvent){
+    public void handleTextEvent(MessageEvent<TextMessageContent> messageEvent) {
         String pesan = messageEvent.getMessage().getText();
         String[] pesanSplit = pesan.split(" ");
         String jawaban;
 
-        switch (pesanSplit[0]){
+        switch (pesanSplit[0]) {
             case("alco"):
             case("Alco"):
                 jawaban = "Lah nama salah satu Developer Ri-Bot nih";
@@ -61,25 +65,32 @@ public class RiBotApplication extends SpringBootServletInitializer {
                 break;
             case("/showSummary"):
                 // Mengambil database dari detail session yang dibuat pada command /makeSession
-                jawaban = "Summary sedang ditunjukkan!\nMaaf command ini masih dalam tahap pengembangan";
+                jawaban = "Summary sedang ditunjukkan!\n"
+                        + "Maaf command ini masih dalam tahap pengembangan";
                 break;
             case("/showMenu"):
                 // Menunjukkan menu berisi command yang dapat dilakukan user
-                jawaban = "Command Menu :\n1. /register\n2. /makeSession\n3. /findRival\n4. /remindRival\n5. /showSummary\nUntuk memunculkan menu ini lagi ketik : /showMenu";
+                jawaban = "Command Menu :\n1. /register\n2. /makeSession\n"
+                        + "3. /findRival\n4. /remindRival\n5. /showSummary\n"
+                        + "Untuk memunculkan menu ini lagi ketik : /showMenu";
                 break;
             case("/makeSession"):
-                jawaban = "Anda telah memilih untuk membuat match\n\n\n\n. Fitur ini sedang dalam pembuatan";
+                jawaban = "Anda telah memilih untuk membuat match\n"
+                        + ". Fitur ini sedang dalam pembuatan";
                 break;
             case("/register"):
-                jawaban = "Anda telah memilih untuk melakukan pendaftaran di Ri-Bot\n\n\n\n. Fitur ini masih dalam tahap pengembanagan";
+                jawaban = "Anda telah memilih untuk melakukan pendaftaran di Ri-Bot\n"
+                        + ". Fitur ini masih dalam tahap pengembanagan";
+                break;
             default:
-                jawaban = "Maaf, command yang anda berikan salah:(\nUntuk mengetahui command yang dapat anda lakukan ketik :\n/showMenu";
+                jawaban = "Maaf, command yang anda berikan salah:(\n"
+                        + "Untuk mengetahui command yang dapat anda lakukan ketik :\n/showMenu";
         }
         String replyToken = messageEvent.getReplyToken();
         handleReplyEvent(replyToken, jawaban);
     }
 
-    private void handleReplyEvent(String replyToken, String jawaban){
+    private void handleReplyEvent(String replyToken, String jawaban) {
         TextMessage jawabanDalamBentukTextMessage = new TextMessage(jawaban);
         try {
             lineMessagingClient

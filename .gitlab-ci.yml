@@ -16,12 +16,7 @@ stages:
   - test
   - deploy
 
-#cache:
-#  paths:
-#    - .gradle/wrapper
-#    - .gradle/caches
-
-Build:
+build:
   stage: build
   script:
     - gradle build
@@ -32,20 +27,24 @@ checkstyle:
   allow_failure: true
   cache:
     key: "$CI_COMMIT_REF_NAME"
-    policy: pull
     paths:
-      - assignment-*/build
-      - assignment-*/.gradle
+      - .gradle
   rules:
     - if: '$CI_PROJECT_NAMESPACE != "ri-bot/"'
 
-Test:
+test:
   stage: test
   script:
     - gradle check
     - gradle jacocoTestReport
-    - cat ri-bot/build/reports/jacoco/test/html/index.html
+    - cat build/jacocoHtml/index.html
 
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    paths:
+      - .gradle
+  rules:
+    - if: '$CI_PROJECT_NAMESPACE != "ri-bot/"'
 
 Deployment:
   image: ruby:2.4

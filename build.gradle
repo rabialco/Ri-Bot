@@ -1,12 +1,54 @@
+buildscript {
+    ext.junitVersion = '5.6.0'
+    ext.checkstyleVersion = '8.29'
+    ext.checkstyleConfig = 'config/checkstyle/google_checks.xml'
+}
+
 plugins {
     id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
+    id 'jacoco'
+    id 'checkstyle'
 }
+
+apply plugin: 'jacoco'
 
 group = 'com.bot'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled true
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
+test.finalizedBy jacocoTestReport
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+apply plugin: 'checkstyle'
+
+checkstyle {
+    toolVersion = checkstyleVersion
+    config = resources.text.fromFile(configDirectory.file("google_checks.xml"))
+//    configFile = file("config/checkstyle/google_checks.xml")
+//    config = resources.text.fromFile(configDirectory.file("${checkstyleConfig}"))
+    maxWarnings = 0  // Fail the build if there are any warnings
+    sourceSets = []  // Do not run checkstyle on gradle build/check
+}
 
 repositories {
     mavenCentral()
@@ -28,30 +70,10 @@ dependencies {
 test {
     useJUnitPlatform()
 }
-
-//buildscript {
-//    ext.junitVersion = '5.6.0'
-//    ext.checkstyleVersion = '8.29'
-//    ext.checkstyleConfig = 'google_checks.xml'
-//}
-
-
-tasks.withType(Checkstyle) {
-    reports {
-        xml.enabled false
-        html.enabled true
-        html.stylesheet resources.text.fromFile('config/checkstyle/google_checks.xml')
-    }
-}
-
-//subprojects {
-//    apply plugin: 'java'
-//    apply plugin: 'application'
-//    apply plugin: 'checkstyle'
-//    checkstyle {
-//        toolVersion = checkstyleVersion
-//        config = resources.text.fromFile(configDirectory.file("${checkstyleConfig}"))
-//        maxWarnings = 0  // Fail the build if there are any warnings
-//        sourceSets = []  // Do not run checkstyle on gradle build/check
+//tasks.withType(Checkstyle) {
+//    reports {
+//        xml.enabled false
+//        html.enabled true
+//        html.stylesheet resources.text.fromFile('config/checkstyle/google_checks.xml')
 //    }
 //}
