@@ -71,16 +71,20 @@ public class RiBotApplication extends SpringBootServletInitializer {
             case("/showMenu"):
                 // Menunjukkan menu berisi command yang dapat dilakukan user
                 jawaban = "Command Menu :\n1. /register\n2. /makeSession\n"
-                        + "3. /findRival\n4. /remindRival\n5. /showSummary\n"
+                        + "3. /remindRival\n4. /showSummary\n"
                         + "Untuk memunculkan menu ini lagi ketik : /showMenu";
                 break;
             case("/makeSession"):
-                jawaban = "Anda telah memilih untuk membuat match\n"
-                        + ". Fitur ini sedang dalam pembuatan";
+                jawaban = "Anda telah memilih untuk membuat match.\n"
+                        + "Fitur ini sedang dalam pembuatan";
                 break;
             case("/register"):
-                jawaban = "Anda telah memilih untuk melakukan pendaftaran di Ri-Bot\n"
-                        + ". Fitur ini masih dalam tahap pengembanagan";
+                jawaban = "Anda telah memilih untuk melakukan pendaftaran di Ri-Bot.\n"
+                        + "Fitur ini masih dalam tahap pengembanagan";
+                break;
+            case("/remindRival"):
+                jawaban = "Anda telah memilih untuk mengingatkan lawan.\n"
+                        + "Fitur ini sedang dalam pembuatan";
                 break;
             default:
                 jawaban = "Maaf, command yang anda berikan salah:(\n"
