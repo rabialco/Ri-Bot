@@ -23,7 +23,7 @@ build:
 
 checkstyle:
   stage: test
-  script: gradle checkstyleMain checkstyleTest
+  script: gradle checkstyle
   allow_failure: true
   cache:
     key: "$CI_COMMIT_REF_NAME"
