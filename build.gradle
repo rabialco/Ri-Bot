@@ -39,8 +39,6 @@ configurations {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'application'
 apply plugin: 'checkstyle'
 
 checkstyle {
