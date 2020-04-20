@@ -4,18 +4,22 @@ buildscript {
     ext.checkstyleConfig = 'config/checkstyle/google_checks.xml'
 }
 
+group = 'com.bot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
 plugins {
     id 'org.springframework.boot' version '2.2.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
-//    id 'jacoco'
+    id 'jacoco'
 }
+
+apply plugin: 'jacoco'
 
 jacoco {
     toolVersion = "0.8.5"
 }
-
-test.finalizedBy jacocoTestReport
 
 jacocoTestReport {
     reports {
@@ -31,10 +35,23 @@ jacocoTestReport {
     }
 }
 
+test.finalizedBy jacocoTestReport
 
-group = 'com.bot'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+apply plugin: 'checkstyle'
+
+checkstyle {
+    toolVersion = checkstyleVersion
+    config = resources.text.fromFile(configDirectory.file("${checkstyleConfig}"))
+    maxWarnings = 0  // Fail the build if there are any warnings
+    sourceSets = []  // Do not run checkstyle on gradle build/check
+}
 
 repositories {
     mavenCentral()
@@ -57,18 +74,6 @@ test {
     useJUnitPlatform()
 }
 
-subprojects {
-    apply plugin: 'java'
-    apply plugin: 'application'
-    apply plugin: 'checkstyle'
-    apply plugin: 'jacoco'
-    checkstyle {
-        toolVersion = checkstyleVersion
-        config = resources.text.fromFile(configDirectory.file("${checkstyleConfig}"))
-        maxWarnings = 0  // Fail the build if there are any warnings
-        sourceSets = []  // Do not run checkstyle on gradle build/check
-    }
-}
 //tasks.withType(Checkstyle) {
 //    reports {
 //        xml.enabled false
