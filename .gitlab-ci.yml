@@ -28,7 +28,7 @@ build:
 
 checkstyle:
   stage: test
-  script: gradle :src:checkstyleTest :src:checkstyleMain
+  script: gradle :checkstyleTest :checkstyleMain
   allow_failure: true
   cache:
     key: "$CI_COMMIT_REF_NAME"
@@ -36,6 +36,17 @@ checkstyle:
       - .gradle
   rules:
     - if: '$CI_PROJECT_NAMESPACE != "ri-bot/"'
+
+test:
+  stage: test
+  script: gradle :test
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    paths:
+      - .gradle
+  rules:
+    - if: '$CI_PROJECT_NAMESPACE != "ri-bot/"'
+
 
 
 Deployment:
