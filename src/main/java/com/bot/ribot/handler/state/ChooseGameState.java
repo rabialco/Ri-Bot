@@ -16,7 +16,7 @@ public class ChooseGameState extends State {
         return "Perintah yang anda masukkan salah. Silahkan pilih game yang ingin anda mainkan : tenis meja\n tinju";
     }
 
-    public String Others(String userId, String command){
+    public String others(String userId, String command){
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         //TO DO: Ganti if condition dengan -> command yang dimasukkan adalah permainan yang diperbolehkan
         if(true){

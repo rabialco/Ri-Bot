@@ -19,7 +19,7 @@ public abstract class State {
 
     public String remindRival(String userId){
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
-        LineUser others = lineUserRepository.findRivalByUserId(userId);
+        //LineUser others = lineUserRepository.findRivalByUserId(userId);
 
         //tambahin fungsi buat kirim pesan ke rival (pakenya push messages)
         return "Rival anda sudah diingatkan terkait game anda";

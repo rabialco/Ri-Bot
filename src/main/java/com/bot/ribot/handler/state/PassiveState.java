@@ -16,7 +16,7 @@ public class PassiveState extends State {
         return "Perintah yang anda masukkan salah. Silahkan selesaikan permainan menggunakan command /finish";
     }
 
-    public String Others(String userId, String command){
+    public String others(String userId, String command){
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         if(command.equals("/finish")){
             user.setState(ActiveState.DB_COL_NAME);

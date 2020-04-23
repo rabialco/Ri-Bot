@@ -63,7 +63,7 @@ dependencies {
     implementation 'com.linecorp.bot:line-bot-servlet:1.15.0'
     implementation 'com.linecorp.bot:line-bot-model:1.15.0'
     implementation 'com.linecorp.bot:line-bot-api-client:1.15.0'
-        
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
@@ -72,6 +72,11 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+bootJar {
+    mainClassName = 'com.bot.ribot.RiBotApplication'
+}
+
 //tasks.withType(Checkstyle) {
 //    reports {
 //        xml.enabled false

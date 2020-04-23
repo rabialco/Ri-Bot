@@ -16,7 +16,7 @@ public class ChooseTimeState extends State {
         return "Perintah yang anda masukkan salah. Silahkan pilih waktu bermain";
     }
 
-    public String Others(String userId, String command){
+    public String others(String userId, String command){
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         //TO DO: Ganti if condition dengan -> command yang dimasukkan adalah waktu yang valid 
         if(true){

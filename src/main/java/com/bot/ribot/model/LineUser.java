@@ -1,6 +1,7 @@
 package com.bot.ribot.model;
 
 import com.bot.ribot.handler.state.UnregisteredState;
+import com.bot.ribot.handler.state.ActiveState;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
