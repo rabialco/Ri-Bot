@@ -71,9 +71,6 @@ dependencies {
 
 test {
     useJUnitPlatform()
-<<<<<<< HEAD
-}
-=======
 }
 
 bootJar {
@@ -87,4 +84,3 @@ bootJar {
 //        html.stylesheet resources.text.fromFile('config/checkstyle/google_checks.xml')
 //    }
 //}
->>>>>>> 61fe307057c817a39130f7797d9164c522d01972
