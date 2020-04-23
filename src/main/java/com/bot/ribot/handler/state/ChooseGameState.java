@@ -18,7 +18,8 @@ public class ChooseGameState extends State {
 
     public String Others(String userId, String command){
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
-        if(command yang dimasukkan adalah permainan yang diperbolehkan){
+        //TO DO: Ganti if condition dengan -> command yang dimasukkan adalah permainan yang diperbolehkan
+        if(true){
             user.setState(ChooseTimeState.DB_COL_NAME);
             lineUserRepository.save(user);
             return "Masukkan waktu bermain anda";

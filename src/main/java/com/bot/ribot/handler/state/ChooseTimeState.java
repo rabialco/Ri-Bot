@@ -18,7 +18,8 @@ public class ChooseTimeState extends State {
 
     public String Others(String userId, String command){
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
-        if(command yang dimasukkan adalah waktu yang valid){
+        //TO DO: Ganti if condition dengan -> command yang dimasukkan adalah waktu yang valid 
+        if(true){
             user.setState(PassiveState.DB_COL_NAME);
             lineUserRepository.save(user);
             return "Permainan berhasil dibuat. gunakan command /finish untuk menyelesaikan permainan";
