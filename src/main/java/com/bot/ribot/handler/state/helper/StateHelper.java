@@ -30,6 +30,9 @@ public class StateHelper {
     @Autowired
     private UnregisteredState unregisteredState;
 
+    /**
+     * Method to get state from name from database table.
+     */
     public State getState(String stateString) {
         switch (stateString) {
             case ActiveState.DB_COL_NAME:
@@ -45,6 +48,11 @@ public class StateHelper {
         }
     }
 
+    /**
+     * Handle whether the state is registered or not.
+     * Must be handle, because if user not registered,
+     * the user not in the database.
+     */
     public State getUserState(String userId) {
         State state;
         if (lineUserRepository.isUserRegistered(userId)) {

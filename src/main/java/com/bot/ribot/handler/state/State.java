@@ -17,7 +17,10 @@ public abstract class State {
 
     public abstract String others(String userId, String command);
 
-    public String remindRival(String userId){
+    /**
+     * Handle when user's want to remind the rival.
+     */
+    public String remindRival(String userId) {
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         //LineUser others = lineUserRepository.findRivalByUserId(userId);
 

@@ -1,8 +1,8 @@
 package com.bot.ribot;
 
-import com.bot.ribot.repository.LineUserRepository;
 import com.bot.ribot.handler.state.State;
 import com.bot.ribot.handler.state.helper.StateHelper;
+import com.bot.ribot.repository.LineUserRepository;
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.event.MessageEvent;
@@ -46,9 +46,15 @@ public class RiBotApplication extends SpringBootServletInitializer {
         SpringApplication.run(RiBotApplication.class, args);
     }
 
+    /**
+     * Handle the user's input from the input arguments.
+     *
+     * @case                   the handleTextEvent case input.
+     * @default                if user's input contains case.
+     */
     @EventMapping
     public void handleTextEvent(MessageEvent<TextMessageContent> messageEvent)
-        throws ExecutionException, InterruptedException{
+        throws ExecutionException, InterruptedException {
 
         Source source = messageEvent.getSource();
         String replyToken = messageEvent.getReplyToken();

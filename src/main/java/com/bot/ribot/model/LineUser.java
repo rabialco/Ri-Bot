@@ -1,7 +1,7 @@
 package com.bot.ribot.model;
 
-import com.bot.ribot.handler.state.UnregisteredState;
 import com.bot.ribot.handler.state.ActiveState;
+import com.bot.ribot.handler.state.UnregisteredState;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "line_user")
-public class LineUser extends AuditModel{
+public class LineUser extends AuditModel {
     @Id
     @Column(name = "user_id", unique = true, nullable = false)
     private String userId;
@@ -23,6 +23,9 @@ public class LineUser extends AuditModel{
     public LineUser() {
     }
 
+    /**
+     * Constructor for LineUser.
+     */
     public LineUser(String userId, String displayName) {
         this.userId = userId;
         this.displayName = displayName;
