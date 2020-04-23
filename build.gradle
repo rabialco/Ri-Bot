@@ -57,6 +57,8 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    implementation 'org.postgresql:postgresql'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'com.linecorp.bot:line-bot-spring-boot:1.15.0'
     implementation 'com.linecorp.bot:line-bot-servlet:1.15.0'
     implementation 'com.linecorp.bot:line-bot-model:1.15.0'
@@ -70,6 +72,11 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+bootJar {
+    mainClassName = 'com.bot.ribot.RiBotApplication'
+}
+
 //tasks.withType(Checkstyle) {
 //    reports {
 //        xml.enabled false
