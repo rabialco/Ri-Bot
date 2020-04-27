@@ -26,6 +26,6 @@ Herokuapp Link : https://line-bot-ri-bot.herokuapp.com/
 ## Contributor
 1. Muhammad Salman Al-farisi - 1806133843 - **[AlphaRazra](https://gitlab.com/AlphaRazra)**
 2. Rabialco Argana - 1806141416 - **[rabialco](https://gitlab.com/rabialco)**
-3. Raul Arrafi Delfarra - 1806205142 - **[Raul](https://gitlab.com/)**
+3. Raul Arrafi Delfarra - 1806205142 - **[Raul](https://gitlab.com/raularrafi)**
 4. Ryan Karyadiputera - 1806205211 -  **[SetiaMDN](https://gitlab.com/SetiaMDN)**
 5. Yasmin Adelia Puti Chaidir - 1806141486 - **[yasminadelia](https://gitlab.com/yasminadelia)**
