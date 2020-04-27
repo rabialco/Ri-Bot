@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "match_session")
-public class MatchSession extends AuditModel {
+public class MatchSession {
     @Id
     @Column(name = "match_id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,7 +36,7 @@ public class MatchSession extends AuditModel {
     private LineUser userFinder;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(referencedColumnName = "user_id", nullable = false)
+    @JoinColumn(referencedColumnName = "user_id", nullable = true)
     private LineUser userRival;
 
     @Column(name = "state")
