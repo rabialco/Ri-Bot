@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "match_session")
-public class MatchSession{
+public class MatchSession {
     @Id
     @Column(name = "match_id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
