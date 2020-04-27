@@ -56,9 +56,9 @@ public class RiBotApplication extends SpringBootServletInitializer {
     @EventMapping
     public void handleTextEvent(MessageEvent<TextMessageContent> messageEvent)
         throws ExecutionException, InterruptedException {
-
         Source source = messageEvent.getSource();
-        String replyToken = messageEvent.getReplyToken();
+        TextMessageContent message = messageEvent.getMessage();
+        final String replyToken = messageEvent.getReplyToken();
 
         String command = getCommand(messageEvent);
         String userId = source.getUserId();
@@ -99,12 +99,7 @@ public class RiBotApplication extends SpringBootServletInitializer {
                 jawaban = state.makeSession(userId);
                 break;
             case("/register"):
-                //kirim ke salman dan alco
-                handlePushMessageEvent("U736daa71fa827df41b58e025e71dbc44", "Sebelum .register()");
-                handlePushMessageEvent("Ub86fdae6098a7c0003dfa5544c035dcc", "Sebelum .register()");
                 jawaban = state.register(userId, displayName);
-                handlePushMessageEvent("U736daa71fa827df41b58e025e71dbc44", "Setelah .register()");
-                handlePushMessageEvent("Ub86fdae6098a7c0003dfa5544c035dcc", "Setelah .register()");
                 break;
             case("/remindrival"):
                 jawaban = state.remindRival(userId);
@@ -112,6 +107,12 @@ public class RiBotApplication extends SpringBootServletInitializer {
             default:
                 jawaban = state.others(userId, command);
         }
+        handlePushMessageEvent("U736daa71fa827df41b58e025e71dbc44", "Ada yang berinteraksi, "
+                + message.toString() + " dengan id: " + userId + " dengan nama: " + displayName
+                + " dengan state: " + lineUserRepository.findStateById(userId));
+        handlePushMessageEvent("Ub86fdae6098a7c0003dfa5544c035dcc", "Ada yang berinteraksi, "
+                + message.toString()  + " dengan id: " + userId + " dengan nama: " + displayName
+                + " dengan state: " + lineUserRepository.findStateById(userId));
         handleReplyEvent(replyToken, jawaban);
     }
 
