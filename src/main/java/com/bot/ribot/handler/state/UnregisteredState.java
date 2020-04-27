@@ -11,11 +11,16 @@ public class UnregisteredState extends State {
      * Handle when user's want to register to Ri-Bot.
      */
     public String register(String userId, String displayName) {
-        LineUser newUser = new LineUser(userId, displayName);
-        lineUserRepository.save(newUser);
+        try {
+            LineUser newUser = new LineUser(userId, displayName);
+            lineUserRepository.save(newUser);
 
-        return "Registrasi sukses. "
-                + "Silahkan masukkan command /makeSession untuk membuat permainan baru";
+
+            return "Registrasi sukses. "
+                    + "Silahkan masukkan command /makeSession untuk membuat permainan baru";
+        } catch (Exception e) {
+            return e.toString();
+        }
     }
 
     public String makeSession(String userId) {
