@@ -4,8 +4,8 @@ import com.bot.ribot.handler.state.State;
 import com.bot.ribot.handler.state.helper.StateHelper;
 import com.bot.ribot.repository.LineUserRepository;
 import com.linecorp.bot.client.LineMessagingClient;
-import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.PushMessage;
+import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.event.source.Source;
@@ -115,7 +115,7 @@ public class RiBotApplication extends SpringBootServletInitializer {
         handleReplyEvent(replyToken, jawaban);
     }
 
-    private void handlePushMessageEvent(String userId, String message){
+    private void handlePushMessageEvent(String userId, String message) {
         TextMessage jawabanDalamBentukTextMessage = new TextMessage(message);
         try {
             lineMessagingClient
