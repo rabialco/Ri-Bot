@@ -5,6 +5,7 @@ import com.bot.ribot.handler.state.helper.StateHelper;
 import com.bot.ribot.repository.LineUserRepository;
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.ReplyMessage;
+import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.event.source.Source;
@@ -98,7 +99,12 @@ public class RiBotApplication extends SpringBootServletInitializer {
                 jawaban = state.makeSession(userId);
                 break;
             case("/register"):
+                //kirim ke salman dan alco
+                handlePushMessageEvent("U736daa71fa827df41b58e025e71dbc44", "Sebelum .register()");
+                handlePushMessageEvent("Ub86fdae6098a7c0003dfa5544c035dcc", "Sebelum .register()");
                 jawaban = state.register(userId, displayName);
+                handlePushMessageEvent("U736daa71fa827df41b58e025e71dbc44", "Setelah .register()");
+                handlePushMessageEvent("Ub86fdae6098a7c0003dfa5544c035dcc", "Setelah .register()");
                 break;
             case("/remindrival"):
                 jawaban = state.remindRival(userId);
@@ -109,6 +115,17 @@ public class RiBotApplication extends SpringBootServletInitializer {
         handleReplyEvent(replyToken, jawaban);
     }
 
+    private void handlePushMessageEvent(String userId, String message){
+        TextMessage jawabanDalamBentukTextMessage = new TextMessage(message);
+        try {
+            lineMessagingClient
+                    .pushMessage(new PushMessage(userId, jawabanDalamBentukTextMessage))
+                    .get();
+        } catch (InterruptedException | ExecutionException e) {
+            log.log(Level.INFO, "Error while sending message");
+            Thread.currentThread().interrupt();
+        }
+    }
 
     private void handleReplyEvent(String replyToken, String jawaban) {
         TextMessage jawabanDalamBentukTextMessage = new TextMessage(jawaban);
