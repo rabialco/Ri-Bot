@@ -1,6 +1,8 @@
 package com.bot.ribot.handler.state;
 
 import com.bot.ribot.model.LineUser;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +21,9 @@ public class UnregisteredState extends State {
             return "Registrasi sukses. "
                     + "Silahkan masukkan command /makeSession untuk membuat permainan baru";
         } catch (Exception e) {
-            return e.toString();
+            StringWriter errors = new StringWriter();
+            e.printStackTrace(new PrintWriter(errors));
+            return errors.toString();
         }
     }
 
