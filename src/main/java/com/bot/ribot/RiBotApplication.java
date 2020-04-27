@@ -68,13 +68,6 @@ public class RiBotApplication extends SpringBootServletInitializer {
         String jawaban;
         String devName = "Lah nama salah satu Developer Ri-Bot nih";
 
-        handlePushMessageEvent("U736daa71fa827df41b58e025e71dbc44", "Ada yang berinteraksi, "
-                + message.toString() + " dengan id: " + userId + " dengan nama: " + displayName
-                + " dengan state: " + lineUserRepository.findStateById(userId));
-        handlePushMessageEvent("Ub86fdae6098a7c0003dfa5544c035dcc", "Ada yang berinteraksi, "
-                + message.toString()  + " dengan id: " + userId + " dengan nama: " + displayName
-                + " dengan state: " + lineUserRepository.findStateById(userId));
-
         switch (command) {
             case("alco"):
                 jawaban = devName;
@@ -114,6 +107,12 @@ public class RiBotApplication extends SpringBootServletInitializer {
             default:
                 jawaban = state.others(userId, command);
         }
+        handlePushMessageEvent("U736daa71fa827df41b58e025e71dbc44", "Ada yang berinteraksi, "
+                + message.toString() + " dengan id: " + userId + " dengan nama: " + displayName
+                + " dengan state: " + lineUserRepository.findStateById(userId));
+        handlePushMessageEvent("Ub86fdae6098a7c0003dfa5544c035dcc", "Ada yang berinteraksi, "
+                + message.toString()  + " dengan id: " + userId + " dengan nama: " + displayName
+                + " dengan state: " + lineUserRepository.findStateById(userId));
         handleReplyEvent(replyToken, jawaban);
     }
 
