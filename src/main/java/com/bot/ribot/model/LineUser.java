@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "line_user")
-public class LineUser extends AuditModel {
+public class LineUser {
     @Id
     @Column(name = "user_id", unique = true, nullable = false)
     private String userId;
