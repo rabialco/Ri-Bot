@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "line_user")
-public class LineUser extends AuditModel {
+@Table(name = "line_user2")
+public class LineUser {
     @Id
     @Column(name = "user_id", unique = true, nullable = false)
     private String userId;
