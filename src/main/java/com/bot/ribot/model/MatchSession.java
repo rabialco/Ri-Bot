@@ -90,7 +90,7 @@ public class MatchSession {
         return userRival;
     }
 
-    public void setGame_place(String gamePlace) {
+    public void setGamePlace(String gamePlace) {
         this.gamePlace = gamePlace;
     }
 
@@ -102,7 +102,7 @@ public class MatchSession {
         this.gameType = gameType;
     }
 
-    public String getGame_type() {
+    public String getGameType() {
         return gameType;
     }
 
