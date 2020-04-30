@@ -5,6 +5,8 @@ import com.bot.ribot.repository.LineUserRepository;
 import com.linecorp.bot.client.LineMessagingClient;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.text.ParseException;
+
 public abstract class State {
     @Autowired
     LineMessagingClient lineMessagingClient;
@@ -15,7 +17,7 @@ public abstract class State {
     
     public abstract String makeSession(String userId);
 
-    public abstract String others(String userId, String command);
+    public abstract String others(String userId, String command) throws ParseException;
 
     /**
      * Handle when user's want to remind the rival.
