@@ -20,7 +20,7 @@ public class ActiveState extends State {
         lineUserRepository.save(user);
         
         //tambahin tapi nanti
-        return "Silahkan pilih game yang ingin anda mainkan : tenis meja\n tinju";
+        return "Silahkan pilih game yang ingin anda mainkan :\ntenis meja\ncatur\ntinju";
     }
 
     public String others(String userId, String command) {

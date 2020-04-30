@@ -25,11 +25,11 @@ public class UnregisteredState extends State {
 
     public String makeSession(String userId) {
         return "Anda belum terdaftar pada sistem Ri-Bot. "
-                + "Silahkan masukkan perintah /register untuk mendaftar" + "id anda: " + userId;
+                + "Silahkan masukkan perintah /register untuk mendaftar";
     }
 
     public String others(String userId, String command) {
         return "Anda belum terdaftar pada sistem Ri-Bot. "
-                + "Silahkan masukkan perintah /register untuk mendaftar" + "id anda: " + userId;
+                + "Silahkan masukkan perintah /register untuk mendaftar";
     }
 }
