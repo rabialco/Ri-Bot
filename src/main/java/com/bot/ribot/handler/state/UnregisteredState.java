@@ -1,5 +1,6 @@
 package com.bot.ribot.handler.state;
 
+import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.model.LineUser;
 import org.springframework.stereotype.Component;
 
@@ -11,25 +12,23 @@ public class UnregisteredState extends State {
      * Handle when user's want to register to Ri-Bot.
      */
     public String register(String userId, String displayName) {
+        //TO DO: Ilangin Exception
         try {
             LineUser newUser = new LineUser(userId, displayName);
             lineUserRepository.save(newUser);
 
 
-            return "Registrasi sukses. "
-                    + "Silahkan masukkan command /makeSession untuk membuat permainan baru";
+            return Messages.SUCCESSFULLY_REGISTERED;
         } catch (Exception e) {
             return e.toString();
         }
     }
 
     public String makeSession(String userId) {
-        return "Anda belum terdaftar pada sistem Ri-Bot. "
-                + "Silahkan masukkan perintah /register untuk mendaftar";
+        return Messages.UNREGISTERED_WRONG_COMMAND;
     }
 
     public String others(String userId, String command) {
-        return "Anda belum terdaftar pada sistem Ri-Bot. "
-                + "Silahkan masukkan perintah /register untuk mendaftar";
+        return Messages.UNREGISTERED_WRONG_COMMAND;
     }
 }
