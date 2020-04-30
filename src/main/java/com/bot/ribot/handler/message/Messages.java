@@ -22,7 +22,7 @@ public class Messages {
     public static final String CHOOSE_GAME_WRONG_COMMAND = "Perintah yang anda masukkan salah. "
             + "Silahkan pilih game yang ingin anda mainkan : tenis meja\ncatir\ntinju";
     
-    public static final String CHOOSE_GAME_SUCCESS = "Masukkan waktu bermain anda";
+    public static final String CHOOSE_GAME_SUCCESS = "Masukkan waktu bermain anda dengan format dd-MM-yyyy hh:mm";
 
     public static final String CHOOSE_TIME_WRONG_COMMAND = "Perintah yang anda masukkan salah."
             + " Silahkan pilih waktu bermain";
