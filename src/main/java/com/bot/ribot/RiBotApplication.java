@@ -13,6 +13,8 @@ import com.linecorp.bot.model.event.source.Source;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
+
+import java.text.ParseException;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
@@ -56,7 +58,7 @@ public class RiBotApplication extends SpringBootServletInitializer {
      */
     @EventMapping
     public void handleTextEvent(MessageEvent<TextMessageContent> messageEvent)
-        throws ExecutionException, InterruptedException {
+        throws ExecutionException, InterruptedException, ParseException{
         Source source = messageEvent.getSource();
         TextMessageContent message = messageEvent.getMessage();
         final String replyToken = messageEvent.getReplyToken();
