@@ -1,5 +1,6 @@
 package com.bot.ribot.handler.state;
 
+import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.model.LineUser;
 import org.springframework.stereotype.Component;
 
@@ -8,12 +9,11 @@ public class ChooseGameState extends State {
     public static final String DB_COL_NAME = "CHOOSE_GAME";
 
     public String register(String userId, String displayName) {
-        return "Anda sudah terdaftar di Ri-Bot. Silahkan masukkan perintah lain";
+        return Messages.ALREADY_REGISTERED;
     }
 
     public String makeSession(String userId) {
-        return "Perintah yang anda masukkan salah. Silahkan pilih game yang"
-                + " ingin anda mainkan : tenis meja\n tinju";
+        return Messages.CHOOSE_GAME_WRONG_COMMAND;
     }
 
     /**
@@ -25,10 +25,9 @@ public class ChooseGameState extends State {
         if (true) {
             user.setState(ChooseTimeState.DB_COL_NAME);
             lineUserRepository.save(user);
-            return "Masukkan waktu bermain anda";
+            return Messages.CHOOSE_GAME_SUCCESS;
         } else {
-            return "Perintah yang anda masukkan salah. Silahkan pilih game yang"
-                    + " ingin anda mainkan : tenis meja\n tinju";
+            return Messages.CHOOSE_GAME_WRONG_COMMAND;
         }
     }
 }
