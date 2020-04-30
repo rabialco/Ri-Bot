@@ -1,5 +1,6 @@
 package com.bot.ribot;
 
+import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.handler.state.State;
 import com.bot.ribot.handler.state.helper.StateHelper;
 import com.bot.ribot.repository.LineUserRepository;
@@ -66,34 +67,15 @@ public class RiBotApplication extends SpringBootServletInitializer {
         State state = stateHelper.getUserState(userId);
         
         String jawaban;
-        String devName = "Lah nama salah satu Developer Ri-Bot nih";
 
         switch (command) {
-            case("alco"):
-                jawaban = devName;
-                break;
-            case("salman"):
-                jawaban = devName;
-                break;
-            case("ryan"):
-                jawaban = devName;
-                break;
-            case("yasmin"):
-                jawaban = devName;
-                break;
-            case("raul"):
-                jawaban = devName;
-                break;
             case("/showsummary"):
                 // Mengambil database dari detail session yang dibuat pada command /makeSession
-                jawaban = "Summary sedang ditunjukkan!\n"
-                        + "Maaf command ini masih dalam tahap pengembangan";
+                jawaban = Messages.SHOW_SUMMARY_MESSAGE;
                 break;
             case("/showmenu"):
                 // Menunjukkan menu berisi command yang dapat dilakukan user
-                jawaban = "Command Menu :\n1. /register\n2. /makeSession\n"
-                        + "3. /remindRival\n4. /showSummary\n"
-                        + "Untuk memunculkan menu ini lagi ketik : /showMenu";
+                jawaban = Messages.SHOW_MENU_MESSAGE;
                 break;
             case("/makesession"):
                 jawaban = state.makeSession(userId);
