@@ -42,4 +42,6 @@ public class Messages {
     public static final String UNREGISTERED_WRONG_COMMAND = "Anda belum terdaftar pada"
             + " sistem Ri-Bot. Silahkan masukkan perintah /register untuk mendaftar";
     
+    public static final String REMIND_SUCCESSFUL = "Rival anda sudah diingatkan "
+            + "terkait game anda";
 }
