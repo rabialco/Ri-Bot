@@ -1,5 +1,6 @@
 package com.bot.ribot.handler.state;
 
+import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.model.LineUser;
 import com.bot.ribot.repository.LineUserRepository;
 import com.linecorp.bot.client.LineMessagingClient;
@@ -27,6 +28,6 @@ public abstract class State {
         //LineUser others = lineUserRepository.findRivalByUserId(userId);
 
         //tambahin fungsi buat kirim pesan ke rival (pakenya push messages)
-        return "Rival anda sudah diingatkan terkait game anda";
+        return Messages.REMIND_SUCCESSFUL;
     }
 }

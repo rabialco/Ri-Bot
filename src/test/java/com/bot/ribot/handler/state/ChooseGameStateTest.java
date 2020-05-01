@@ -13,9 +13,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-public class ActiveStateTest {
+public class ChooseGameStateTest {
     @InjectMocks
-    private ActiveState activeState;
+    private ChooseGameState chooseGameState;
 
     private String responses;
 
@@ -25,34 +25,33 @@ public class ActiveStateTest {
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        LineUser userSalman = new LineUser("1", "Salman");
-        userSalman.setState(ActiveState.DB_COL_NAME);
-        when(lineUserRepository.findLineUserByUserId("1")).thenReturn(
-            userSalman
+        LineUser userQra = new LineUser("<3", "Qra");
+        userQra.setState(ChooseGameState.DB_COL_NAME);
+        when(lineUserRepository.findLineUserByUserId("<3")).thenReturn(
+            userQra
         );
     }
-
+    
     @Test
     public void contextLoads() {
-        assertThat(activeState).isNotNull();
+        assertThat(chooseGameState).isNotNull();
     }
 
     @Test
     public void registerTest() {
         responses = Messages.ALREADY_REGISTERED;
-        assertEquals(responses, activeState.register("210", "Qra"));
+        assertEquals(responses, chooseGameState.register("210", "Qra"));
     }
 
     @Test
     public void makeSessionTest() {
-        responses = Messages.ACTIVE_STATE_MAKE_SESSION;
-        assertEquals(responses, activeState.makeSession("1"));
+        responses = Messages.CHOOSE_GAME_WRONG_COMMAND;
+        assertEquals(responses, chooseGameState.makeSession("1810"));
     }
 
     @Test
     public void othersTest() {
-        responses = Messages.ACTIVE_STATE_WRONG_COMMAND;
-        assertEquals(responses, activeState.others("1", "hancurkan"));
+        responses = Messages.CHOOSE_GAME_SUCCESS;
+        assertEquals(responses, chooseGameState.others("<3", "Tinju"));
     }
-
 }
