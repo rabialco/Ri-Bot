@@ -2,13 +2,13 @@ package com.bot.ribot.handler.state;
 
 import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.model.LineUser;
-import org.springframework.stereotype.Component;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.springframework.stereotype.Component;
+
 
 @Component
 public class ChooseTimeState extends State {
@@ -23,16 +23,12 @@ public class ChooseTimeState extends State {
     }
 
     private static Pattern dateTimePattern = Pattern.compile(
-            "^(([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-(19|20)[0-9]{2} ([0-1]?[0-9]|2?[0-3]):([0-5][0-9]))$");
+            "^(([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-(19|20)[0-9]{2} "
+                    + "([0-1]?[0-9]|2?[0-3]):([0-5][0-9]))$");
 
     private static SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("dd-MM-yyyy hh:mm");
 
     private boolean isDateTimeValid(String dateTime) throws ParseException {
-        /**
-         * date is valid if it matches the pattern and not earlier than today
-         * @version 1.0
-         * @author ipman
-         */
         Matcher matcher = dateTimePattern.matcher(dateTime);
         if (matcher.matches()) {
             Date date1 = new Date();
@@ -46,7 +42,7 @@ public class ChooseTimeState extends State {
     /**
      * Handle when user's want to choose what time he/she want to play.
      */
-    public String others(String userId, String command) throws ParseException{
+    public String others(String userId, String command) throws ParseException {
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         //TO DO: Ganti if condition dengan -> command yang dimasukkan adalah waktu yang valid 
         if (isDateTimeValid(command)) {
