@@ -1,9 +1,11 @@
 package com.bot.ribot.repository;
 
 import com.bot.ribot.model.MatchSession;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+@SpringBootApplication
 public interface MatchSessionRepository extends JpaRepository<MatchSession, String> {
     @Query(value = "SELECT * FROM LINE_USER LU, MATCH_SESSION MS WHERE USER_ID = ?1"
             + "AND MS.USERFINDER_USER_ID = LU.USER_ID", nativeQuery = true)
