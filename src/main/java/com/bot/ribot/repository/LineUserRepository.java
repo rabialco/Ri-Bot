@@ -4,6 +4,8 @@ import com.bot.ribot.model.LineUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface LineUserRepository extends JpaRepository<LineUser, String> {
     @Query(value = "SELECT * FROM LINE_USER WHERE USER_ID = ?1", nativeQuery = true)
     LineUser findLineUserByUserId(String userID);
@@ -14,4 +16,7 @@ public interface LineUserRepository extends JpaRepository<LineUser, String> {
 
     @Query(value = "SELECT state FROM LINE_USER WHERE USER_ID = ?1", nativeQuery = true)
     String findStateById(String userID);
+
+    @Query(value = "SELECT * FROM LINE_USER", nativeQuery = true)
+    List<LineUser> findAllLineUser();
 }
