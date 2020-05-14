@@ -45,5 +45,5 @@ public class Messages {
     
     public static final String REMIND_SUCCESSFUL = "Rival anda sudah diingatkan "
             + "terkait game anda"
-            + "Anda dapat mengingatkan kembali rival dengan menggunakan command /remind";
+            + "Rival akan diingatkan kembali setiap 10 menit";
 }
