@@ -44,6 +44,6 @@ public class Messages {
             + " sistem Ri-Bot. Silahkan masukkan perintah /register untuk mendaftar";
     
     public static final String REMIND_SUCCESSFUL = "Rival anda sudah diingatkan "
-            + "terkait game anda"
+            + "terkait game anda. "
             + "Rival akan diingatkan kembali setiap 10 menit";
 }
