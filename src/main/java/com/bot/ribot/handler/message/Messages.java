@@ -1,7 +1,7 @@
 package com.bot.ribot.handler.message;
 
 public class Messages {
-    //semua string cetak cetak simppan disini biar rapi
+    //semua string cetak cetak simpan disini biar rapi
 
     public static final String SHOW_SUMMARY_MESSAGE = "Summary sedang ditunjukkan!\n"
             + "Maaf command ini masih dalam tahap pengembangan";
@@ -44,5 +44,6 @@ public class Messages {
             + " sistem Ri-Bot. Silahkan masukkan perintah /register untuk mendaftar";
     
     public static final String REMIND_SUCCESSFUL = "Rival anda sudah diingatkan "
-            + "terkait game anda";
+            + "terkait game anda. "
+            + "Rival akan diingatkan kembali setiap 10 menit";
 }
