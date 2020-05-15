@@ -2,12 +2,21 @@ package com.bot.ribot.handler.state;
 
 import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.model.LineUser;
+import com.linecorp.bot.client.LineMessagingClient;
+import com.linecorp.bot.model.PushMessage;
+import com.linecorp.bot.model.message.TextMessage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.springframework.stereotype.Component;
 
 
 @Component
@@ -33,18 +42,41 @@ public class ChooseTimeState extends State {
         if (matcher.matches()) {
             Date date1 = new Date();
             Date date2 = dateTimeFormatter.parse(dateTime);
+            handlePushMessageEvent("U736daa71fa827df41b58e025e71dbc44", "Ada yang memilih time, "
+                  + date1.toString() + "\n" + date2.toString() + "\n");
             return (date1.compareTo(date2) <= 0);
         } else {
             return false;
         }
     }
 
+    //This block of code dedicated to salman's debug
+    @Autowired
+    private LineMessagingClient lineMessagingClient;
+
+
+
+    LogManager lgmngr = LogManager.getLogManager();
+    Logger log = lgmngr.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+    private void handlePushMessageEvent(String userId, String message) {
+        TextMessage jawabanDalamBentukTextMessage = new TextMessage(message);
+        try {
+            lineMessagingClient
+                    .pushMessage(new PushMessage(userId, jawabanDalamBentukTextMessage))
+                    .get();
+        } catch (InterruptedException | ExecutionException e) {
+            log.log(Level.INFO, "Error while sending message");
+            Thread.currentThread().interrupt();
+        }
+    }
     /**
      * Handle when user's want to choose what time he/she want to play.
      */
     public String others(String userId, String command) throws ParseException {
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
-        //TO DO: Ganti if condition dengan -> command yang dimasukkan adalah waktu yang valid 
+        //TO DO: Ganti if condition dengan -> command yang dimasukkan adalah waktu yang valid
+
         if (isDateTimeValid(command)) {
             user.setState(PassiveState.DB_COL_NAME);
             lineUserRepository.save(user);
