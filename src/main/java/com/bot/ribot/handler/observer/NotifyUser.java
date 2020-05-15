@@ -5,14 +5,15 @@ import com.bot.ribot.repository.LineUserRepository;
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.message.TextMessage;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+
 
 @Component
 public class NotifyUser {
@@ -28,13 +29,17 @@ public class NotifyUser {
     LogManager lgmngr = LogManager.getLogManager();
     Logger log = lgmngr.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    public void setNewMatchSession(String newMatchSession){
+    public void setNewMatchSession(String newMatchSession) {
         this.newMatchSession = newMatchSession;
     }
 
-    public void notifyActiveUser(){
+    /** 
+     * Method for notify all active users
+     * When there is new matchSession created.
+    */
+    public void notifyActiveUser() {
         List<LineUser> lineUsers = lineUserRepository.findAllLineUser();
-        for(LineUser lineUser : lineUsers){
+        for (LineUser lineUser : lineUsers) {
             handlePushMessageEvent(lineUser.getUserId(), newMatchSession);
         }
     }
