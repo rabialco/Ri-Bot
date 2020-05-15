@@ -104,7 +104,7 @@ public class RiBotApplication extends SpringBootServletInitializer {
         handleReplyEvent(replyToken, jawaban);
     }
 
-    private void handlePushMessageEvent(String userId, String message) {
+    public void handlePushMessageEvent(String userId, String message) {
         TextMessage jawabanDalamBentukTextMessage = new TextMessage(message);
         try {
             lineMessagingClient
