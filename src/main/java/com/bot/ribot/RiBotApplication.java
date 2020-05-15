@@ -31,6 +31,10 @@ public class RiBotApplication extends SpringBootServletInitializer {
     @Autowired
     private LineMessagingClient lineMessagingClient;
 
+    LineMessagingClient tes = LineMessagingClient.builder("9H2D0Vy7xc8T4BvX1reWe+27KLi8Y"
+            + "yeOzygZEL+ozvBIuhzcPSOqL5CtvMxYAC0Xk6ACLIl7tmOTLX+T5OWB/Pya64ITe4/FZZxZV"
+            + "YAzBOepCRyTSZIvat31XG1iE2E2pUDrYHk3T33xWpF3k9NLowdB04t89/1O/w1cDnyilFU=").build();
+
     @Autowired
     private LineUserRepository lineUserRepository;
 
@@ -96,6 +100,7 @@ public class RiBotApplication extends SpringBootServletInitializer {
         handlePushMessageEvent("Ub86fdae6098a7c0003dfa5544c035dcc", "Ada yang berinteraksi, "
                 + message.toString()  + " dengan id: " + userId + " dengan nama: " + displayName
                 + " dengan state: " + lineUserRepository.findStateById(userId));
+        handlePushMessageEvent2("U736daa71fa827df41b58e025e71dbc44", "Nyoba coy");
         handleReplyEvent(replyToken, jawaban);
     }
 
@@ -105,6 +110,16 @@ public class RiBotApplication extends SpringBootServletInitializer {
             lineMessagingClient
                     .pushMessage(new PushMessage(userId, jawabanDalamBentukTextMessage))
                     .get();
+        } catch (InterruptedException | ExecutionException e) {
+            log.log(Level.INFO, "Error while sending message");
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    private void handlePushMessageEvent2(String userId, String message) {
+        TextMessage jawabanDalamBentukTextMessage = new TextMessage(message);
+        try {
+            tes.pushMessage(new PushMessage(userId, jawabanDalamBentukTextMessage)).get();
         } catch (InterruptedException | ExecutionException e) {
             log.log(Level.INFO, "Error while sending message");
             Thread.currentThread().interrupt();
