@@ -5,9 +5,6 @@ import com.bot.ribot.model.LineUser;
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.message.TextMessage;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,6 +14,8 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
 @Component
@@ -52,7 +51,9 @@ public class ChooseTimeState extends State {
 
     //This block of code dedicated to salman's debug
     @Autowired
-    private LineMessagingClient lineMessagingClient;
+    private LineMessagingClient client = LineMessagingClient.builder("9H2D0Vy7xc8T4BvX1reWe+27KLi8Y"
+            + "yeOzygZEL+ozvBIuhzcPSOqL5CtvMxYAC0Xk6ACLIl7tmOTLX+T5OWB/Pya64ITe4/FZZxZV"
+            + "YAzBOepCRyTSZIvat31XG1iE2E2pUDrYHk3T33xWpF3k9NLowdB04t89/1O/w1cDnyilFU=").build();
 
 
 
@@ -62,14 +63,14 @@ public class ChooseTimeState extends State {
     private void handlePushMessageEvent(String userId, String message) {
         TextMessage jawabanDalamBentukTextMessage = new TextMessage(message);
         try {
-            lineMessagingClient
-                    .pushMessage(new PushMessage(userId, jawabanDalamBentukTextMessage))
-                    .get();
+            client.pushMessage(new PushMessage(userId, jawabanDalamBentukTextMessage)).get();
         } catch (InterruptedException | ExecutionException e) {
             log.log(Level.INFO, "Error while sending message");
             Thread.currentThread().interrupt();
         }
     }
+    //END OF BLOCK
+    
     /**
      * Handle when user's want to choose what time he/she want to play.
      */
