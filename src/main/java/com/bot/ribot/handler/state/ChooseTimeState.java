@@ -50,12 +50,9 @@ public class ChooseTimeState extends State {
     }
 
     //This block of code dedicated to salman's debug
-    @Autowired
     private LineMessagingClient client = LineMessagingClient.builder("9H2D0Vy7xc8T4BvX1reWe+27KLi8Y"
             + "yeOzygZEL+ozvBIuhzcPSOqL5CtvMxYAC0Xk6ACLIl7tmOTLX+T5OWB/Pya64ITe4/FZZxZV"
             + "YAzBOepCRyTSZIvat31XG1iE2E2pUDrYHk3T33xWpF3k9NLowdB04t89/1O/w1cDnyilFU=").build();
-
-
 
     LogManager lgmngr = LogManager.getLogManager();
     Logger log = lgmngr.getLogger(Logger.GLOBAL_LOGGER_NAME);
