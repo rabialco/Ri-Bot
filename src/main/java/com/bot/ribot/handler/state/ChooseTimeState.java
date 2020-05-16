@@ -2,21 +2,15 @@ package com.bot.ribot.handler.state;
 
 import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.model.LineUser;
-import com.bot.ribot.RiBotApplication;
-import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.message.TextMessage;
+import org.springframework.stereotype.Component;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 
 @Component
@@ -39,10 +33,13 @@ public class ChooseTimeState extends State {
 
     private boolean isDateTimeValid(String dateTime) throws ParseException {
         Matcher matcher = dateTimePattern.matcher(dateTime);
+        TextMessage textMessage = new TextMessage("Ada yang memilih time, "
+                + dateTime + " " + matcher.matches() + "\n");
+        lineMessagingClient.pushMessage(new PushMessage("U736daa71fa827df41b58e025e71dbc44", textMessage));
         if (matcher.matches()) {
             Date date1 = new Date();
             Date date2 = dateTimeFormatter.parse(dateTime);
-            TextMessage textMessage = new TextMessage("Ada yang memilih time, "
+            textMessage = new TextMessage("Ada yang memilih time, "
                         + date1.toString() + "\n" + date2.toString() + "\n");
             
             lineMessagingClient.pushMessage(new PushMessage("U736daa71fa827df41b58e025e71dbc44", textMessage));
