@@ -2,6 +2,7 @@ package com.bot.ribot.handler.state;
 
 import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.model.LineUser;
+import com.bot.ribot.RiBotApplication;
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.message.TextMessage;
@@ -21,6 +22,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ChooseTimeState extends State {
     public static final String DB_COL_NAME = "CHOOSE_TIME";
+
+    private static RiBotApplication ribotapplication = new RiBotApplication();
 
     public String register(String userId, String displayName) {
         return Messages.ALREADY_REGISTERED;
@@ -43,6 +46,8 @@ public class ChooseTimeState extends State {
             Date date2 = dateTimeFormatter.parse(dateTime);
             handlePushMessageEvent("U736daa71fa827df41b58e025e71dbc44", "Ada yang memilih time, "
                   + date1.toString() + "\n" + date2.toString() + "\n");
+            ribotapplication.handlePushMessageEvent("U736daa71fa827df41b58e025e71dbc44", "Ada yang memilih time, "
+            + date1.toString() + "\n" + date2.toString() + "\n");
             return (date1.compareTo(date2) <= 0);
         } else {
             return false;
