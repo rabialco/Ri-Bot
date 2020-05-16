@@ -19,9 +19,14 @@ public class ActiveState extends State {
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         user.setState(ChooseGameState.DB_COL_NAME);
         lineUserRepository.save(user);
-        
-        //tambahin tapi nanti
-        return Messages.ACTIVE_STATE_MAKE_SESSION;
+
+        StringBuilder messages = new StringBuilder();
+        messages.append("Silahkan pilih game yang ingin anda mainkan :");
+        for(String game : Messages.availableGame){
+            messages.append("\n");
+            messages.append(game);
+        }
+        return messages.toString();
     }
 
     public String others(String userId, String command) {

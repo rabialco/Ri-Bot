@@ -2,8 +2,7 @@ package com.bot.ribot.handler.state;
 
 import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.model.LineUser;
-import com.linecorp.bot.model.PushMessage;
-import com.linecorp.bot.model.message.TextMessage;
+import com.bot.ribot.model.MatchSession;
 import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
@@ -33,31 +32,29 @@ public class ChooseTimeState extends State {
 
     private boolean isDateTimeValid(String dateTime) throws ParseException {
         Matcher matcher = dateTimePattern.matcher(dateTime);
-        TextMessage textMessage = new TextMessage("Ada yang memilih time, "
-                + dateTime + " " + matcher.matches() + "\n");
-        lineMessagingClient.pushMessage(new PushMessage("U736daa71fa827df41b58e025e71dbc44", textMessage));
         if (matcher.matches()) {
             Date date1 = new Date();
             Date date2 = dateTimeFormatter.parse(dateTime);
-            textMessage = new TextMessage("Ada yang memilih time, "
-                        + date1.toString() + "\n" + date2.toString() + "\n");
-            
-            lineMessagingClient.pushMessage(new PushMessage("U736daa71fa827df41b58e025e71dbc44", textMessage));
             return (date1.compareTo(date2) <= 0);
         } else {
             return false;
         }
     }
-    
+
     /**
      * Handle when user's want to choose what time he/she want to play.
      */
     public String others(String userId, String command) throws ParseException {
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
+        MatchSession match = matchSessionRepository.findMatchSessionAfterChooseGame(userId);
         //TO DO: Ganti if condition dengan -> command yang dimasukkan adalah waktu yang valid
 
         if (isDateTimeValid(command)) {
             user.setState(PassiveState.DB_COL_NAME);
+            Date formattedDate = dateTimeFormatter.parse(command);
+            match.setGameTime(formattedDate);
+
+            matchSessionRepository.save(match);
             lineUserRepository.save(user);
             return Messages.CHOOSE_TIME_SUCCESS;
         } else {
