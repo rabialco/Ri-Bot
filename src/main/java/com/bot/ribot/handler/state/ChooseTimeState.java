@@ -61,7 +61,7 @@ public class ChooseTimeState extends State {
             lineUserRepository.save(user);
             return Messages.CHOOSE_TIME_SUCCESS;
         } else {
-            return "AYOLLAAAAH salaaah";
+            return Messages.CHOOSE_TIME_WRONG_COMMAND;
         }
     }
 }
