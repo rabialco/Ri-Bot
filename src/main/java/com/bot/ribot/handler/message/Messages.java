@@ -3,6 +3,14 @@ package com.bot.ribot.handler.message;
 import java.util.*;
 
 public class Messages {
+    public static boolean isAvailableGame(String check){
+        for(String game : availableGame){
+            if(game.equalsIgnoreCase(check)){
+                return true;
+            }
+        }
+        return false;
+    }
     //semua string cetak cetak simpan disini biar rapi
 
     public static final ArrayList<String> availableGame = new ArrayList<String>(

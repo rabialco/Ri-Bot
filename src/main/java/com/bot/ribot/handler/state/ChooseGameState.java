@@ -3,8 +3,6 @@ package com.bot.ribot.handler.state;
 import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.model.LineUser;
 import com.bot.ribot.model.MatchSession;
-import com.linecorp.bot.model.PushMessage;
-import com.linecorp.bot.model.message.TextMessage;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -31,9 +29,9 @@ public class ChooseGameState extends State {
     public String others(String userId, String command) {
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         //TO DO: true diganti command yang dimasukkan adalah permainan yang diperbolehkan
-        TextMessage textMessage = new TextMessage(command + " " + Messages.availableGame.toString());
-        lineMessagingClient.pushMessage(new PushMessage("U736daa71fa827df41b58e025e71dbc44", textMessage));
-        if (Messages.availableGame.contains(command)) {
+        //TextMessage textMessage = new TextMessage(command + " " + Messages.availableGame.toString());
+        //lineMessagingClient.pushMessage(new PushMessage("U736daa71fa827df41b58e025e71dbc44", textMessage));
+        if (Messages.isAvailableGame(command)) {
             user.setState(ChooseTimeState.DB_COL_NAME);
             lineUserRepository.save(user);
             MatchSession match = new MatchSession(user, command);
