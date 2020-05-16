@@ -23,8 +23,6 @@ import org.springframework.stereotype.Component;
 public class ChooseTimeState extends State {
     public static final String DB_COL_NAME = "CHOOSE_TIME";
 
-    private static RiBotApplication ribotapplication = new RiBotApplication();
-
     public String register(String userId, String displayName) {
         return Messages.ALREADY_REGISTERED;
     }
@@ -44,34 +42,11 @@ public class ChooseTimeState extends State {
         if (matcher.matches()) {
             Date date1 = new Date();
             Date date2 = dateTimeFormatter.parse(dateTime);
-            handlePushMessageEvent("U736daa71fa827df41b58e025e71dbc44", "Ada yang memilih time, "
-                  + date1.toString() + "\n" + date2.toString() + "\n");
-            ribotapplication.handlePushMessageEvent("U736daa71fa827df41b58e025e71dbc44", "Ada yang memilih time, "
-            + date1.toString() + "\n" + date2.toString() + "\n");
             return (date1.compareTo(date2) <= 0);
         } else {
             return false;
         }
     }
-
-    //This block of code dedicated to salman's debug
-    private LineMessagingClient client = LineMessagingClient.builder("9H2D0Vy7xc8T4BvX1reWe+27KLi8Y"
-            + "yeOzygZEL+ozvBIuhzcPSOqL5CtvMxYAC0Xk6ACLIl7tmOTLX+T5OWB/Pya64ITe4/FZZxZV"
-            + "YAzBOepCRyTSZIvat31XG1iE2E2pUDrYHk3T33xWpF3k9NLowdB04t89/1O/w1cDnyilFU=").build();
-
-    LogManager lgmngr = LogManager.getLogManager();
-    Logger log = lgmngr.getLogger(Logger.GLOBAL_LOGGER_NAME);
-
-    private void handlePushMessageEvent(String userId, String message) {
-        TextMessage jawabanDalamBentukTextMessage = new TextMessage(message);
-        try {
-            client.pushMessage(new PushMessage(userId, jawabanDalamBentukTextMessage)).get();
-        } catch (InterruptedException | ExecutionException e) {
-            log.log(Level.INFO, "Error while sending message");
-            Thread.currentThread().interrupt();
-        }
-    }
-    //END OF BLOCK
     
     /**
      * Handle when user's want to choose what time he/she want to play.
@@ -85,7 +60,7 @@ public class ChooseTimeState extends State {
             lineUserRepository.save(user);
             return Messages.CHOOSE_TIME_SUCCESS;
         } else {
-            return "AYOLLAAAAH salaaah";
+            return Messages.CHOOSE_TIME_WRONG_COMMAND;
         }
     }
 }
