@@ -27,7 +27,7 @@ public class ChooseTimeState extends State {
 
     private static Pattern dateTimePattern = Pattern.compile(
             "^(([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-(19|20)[0-9]{2} "
-                    + "([0-1]?[0-9]|2?[0-3]):([0-5][0-9]))$");
+                    + "([0-1][0-9]|2[0-3]):([0-5][0-9]))$");
 
     private static SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("dd-MM-yyyy hh:mm");
 
