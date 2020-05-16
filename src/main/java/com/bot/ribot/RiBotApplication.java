@@ -124,7 +124,7 @@ public class RiBotApplication extends SpringBootServletInitializer {
     }
 
     public String getCommand(MessageEvent<TextMessageContent> event) {
-        return event.getMessage().getText().split(" ")[0].toLowerCase();
+        return event.getMessage().getText().toLowerCase();
     }
 
     public String getUserDisplayName(String userId)
