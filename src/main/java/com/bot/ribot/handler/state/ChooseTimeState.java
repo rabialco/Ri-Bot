@@ -42,6 +42,10 @@ public class ChooseTimeState extends State {
         if (matcher.matches()) {
             Date date1 = new Date();
             Date date2 = dateTimeFormatter.parse(dateTime);
+            TextMessage textMessage = new TextMessage("Ada yang memilih time, "
+                        + date1.toString() + "\n" + date2.toString() + "\n");
+            
+            lineMessagingClient.pushMessage(new PushMessage("U736daa71fa827df41b58e025e71dbc44", textMessage));
             return (date1.compareTo(date2) <= 0);
         } else {
             return false;
@@ -60,7 +64,7 @@ public class ChooseTimeState extends State {
             lineUserRepository.save(user);
             return Messages.CHOOSE_TIME_SUCCESS;
         } else {
-            return Messages.CHOOSE_TIME_WRONG_COMMAND;
+            return "AYOLLAAAAH salaaah";
         }
     }
 }
