@@ -45,7 +45,14 @@ public class ActiveStateTest {
 
     @Test
     public void makeSessionTest() {
-        responses = Messages.ACTIVE_STATE_MAKE_SESSION;
+        StringBuilder messages = new StringBuilder();
+        messages.append("Silahkan pilih game yang ingin anda mainkan :");
+        for(String game : Messages.availableGame){
+            messages.append("\n");
+            messages.append(game);
+        }
+
+        responses = messages.toString();
         assertEquals(responses, activeState.makeSession("1"));
     }
 
