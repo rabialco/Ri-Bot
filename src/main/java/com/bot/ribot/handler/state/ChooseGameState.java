@@ -33,10 +33,14 @@ public class ChooseGameState extends State {
         //lineMessagingClient.pushMessage(new PushMessage("U736daa71fa827df41b58e025e71dbc44", textMessage));
         if (Messages.isAvailableGame(command)) {
             user.setState(ChooseTimeState.DB_COL_NAME);
-            MatchSession match = new MatchSession(user, command);
             lineUserRepository.save(user);
-            matchSessionRepository.save(match);
-            return Messages.CHOOSE_GAME_SUCCESS;
+            try{
+                MatchSession match = new MatchSession(user, command);
+                matchSessionRepository.save(match);
+                return Messages.CHOOSE_GAME_SUCCESS;
+            } catch (Exception e) {
+                return e.toString();
+            }
         } else {
             StringBuilder messages = new StringBuilder();
             messages.append("Perintah yang anda masukkan salah, Silahkan pilih game yang ingin anda mainkan :");

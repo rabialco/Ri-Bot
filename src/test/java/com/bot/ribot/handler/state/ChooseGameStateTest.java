@@ -2,7 +2,6 @@ package com.bot.ribot.handler.state;
 
 import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.model.LineUser;
-import com.bot.ribot.model.MatchSession;
 import com.bot.ribot.repository.LineUserRepository;
 import com.bot.ribot.repository.MatchSessionRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,14 +30,14 @@ public class ChooseGameStateTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         LineUser userQra = new LineUser("<3", "Qra");
-        MatchSession match = new MatchSession(userQra, "Tinju");
+        //MatchSession match = new MatchSession(userQra, "Tinju");
         userQra.setState(ChooseGameState.DB_COL_NAME);
         when(lineUserRepository.findLineUserByUserId("<3")).thenReturn(
             userQra
         );
-        when(matchSessionRepository.findMatchSessionAfterChooseGame("<3")).thenReturn(
-                match
-        );
+//        when(matchSessionRepository.findMatchSessionAfterChooseGame("<3")).thenReturn(
+//                match
+//        );
     }
     
     @Test
