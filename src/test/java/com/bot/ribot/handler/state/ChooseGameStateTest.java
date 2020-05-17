@@ -55,9 +55,9 @@ public class ChooseGameStateTest {
         assertEquals(responses, chooseGameState.makeSession("1810"));
     }
 
-//    @Test
-//    public void othersTest() {
-//        responses = Messages.CHOOSE_GAME_SUCCESS;
-//        assertEquals(responses, chooseGameState.others("<3", "Tinju"));
-//    }
+    @Test
+    public void othersTest() {
+        responses = Messages.CHOOSE_GAME_SUCCESS;
+        assertEquals(responses, chooseGameState.others("<3", "Tinju"));
+    }
 }
