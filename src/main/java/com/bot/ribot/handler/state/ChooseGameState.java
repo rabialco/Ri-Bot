@@ -33,8 +33,9 @@ public class ChooseGameState extends State {
         //lineMessagingClient.pushMessage(new PushMessage("U736daa71fa827df41b58e025e71dbc44", textMessage));
         if (Messages.isAvailableGame(command)) {
             user.setState(ChooseTimeState.DB_COL_NAME);
-            lineUserRepository.save(user);
             MatchSession match = new MatchSession(user, command);
+            lineUserRepository.save(user);
+            matchSessionRepository.save(match);
             return Messages.CHOOSE_GAME_SUCCESS;
         } else {
             StringBuilder messages = new StringBuilder();
