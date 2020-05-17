@@ -19,14 +19,8 @@ public class Messages {
     public static final String ALREADY_REGISTERED = "Anda sudah terdaftar di Ri-Bot. "
             + "Silahkan masukkan perintah lain";
 
-    public static final String ACTIVE_STATE_MAKE_SESSION = "Silahkan pilih game "
-            + "yang ingin anda mainkan :\ntenis meja\ncatur\ntinju";
-
     public static final String ACTIVE_STATE_WRONG_COMMAND = "Perintah yang anda masukkan salah. "
             + "Silahkan buat game dengan perintah /makeSession";
-
-    public static final String CHOOSE_GAME_WRONG_COMMAND = "Perintah yang anda masukkan salah. "
-            + "Silahkan pilih game yang ingin anda mainkan : tenis meja\ncatir\ntinju";
     
     public static final String CHOOSE_GAME_SUCCESS =
             "Masukkan waktu bermain anda dengan format dd-MM-yyyy hh:mm";
