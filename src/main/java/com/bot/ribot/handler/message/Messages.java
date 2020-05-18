@@ -21,8 +21,8 @@ public class Messages {
             + "Maaf command ini masih dalam tahap pengembangan";
 
     public static final String SHOW_MENU_MESSAGE = "Command Menu :\n1. /register\n2. /makeSession\n"
-            + "3. /remindRival\n4. /showSummary\n"
-            + "Untuk memunculkan menu ini lagi ketik : /showMenu";
+            + "3. /remindRival\n4. /showSummary\n5. /showAvailableSession\n"
+            + "Untuk memunculkan menu ini lagi ketik: \n/showMenu";
 
     public static final String ALREADY_REGISTERED = "Anda sudah terdaftar di Ri-Bot. "
             + "Silahkan masukkan perintah lain";

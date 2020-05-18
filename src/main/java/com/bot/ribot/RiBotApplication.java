@@ -3,7 +3,9 @@ package com.bot.ribot;
 import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.handler.state.State;
 import com.bot.ribot.handler.state.helper.StateHelper;
+import com.bot.ribot.model.MatchSession;
 import com.bot.ribot.repository.LineUserRepository;
+import com.bot.ribot.repository.MatchSessionRepository;
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
@@ -37,6 +39,9 @@ public class RiBotApplication extends SpringBootServletInitializer {
     @Autowired
     private StateHelper stateHelper;
 
+    @Autowired
+    private MatchSessionRepository matchSessionRepository;
+
     LogManager lgmngr = LogManager.getLogManager();
     Logger log = lgmngr.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
@@ -66,7 +71,7 @@ public class RiBotApplication extends SpringBootServletInitializer {
         String userId = source.getUserId();
         String displayName = getUserDisplayName(userId);
         State state = stateHelper.getUserState(userId);
-        
+
         String jawaban;
 
         switch (command) {
@@ -87,6 +92,9 @@ public class RiBotApplication extends SpringBootServletInitializer {
             case("/remindrival"):
                 jawaban = state.remindRival(userId);
                 break;
+//            case("/showAvailableSession"):
+//                jawaban = matchSessionRepository.findAvailableRival();
+//                break;
             default:
                 jawaban = state.others(userId, command);
         }

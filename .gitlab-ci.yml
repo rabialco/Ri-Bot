@@ -21,16 +21,17 @@ build:
   script:
     - gradle build
 
-#checkstyle:
-#  stage: test
-#  script: gradle checkstyleMain checkstyleTest
-#  allow_failure: true
-#  cache:
-#    key: "$CI_COMMIT_REF_NAME"
-#    paths:
-#      - .gradle
-#  rules:
-#    - if: '$CI_PROJECT_NAMESPACE != "ri-bot/"'
+checkstyle:
+ stage: test
+ script: gradle checkstyleMain
+#  checkstyleTest
+ allow_failure: true
+ cache:
+   key: "$CI_COMMIT_REF_NAME"
+   paths:
+     - .gradle
+ rules:
+   - if: '$CI_PROJECT_NAMESPACE != "ri-bot/"'
 
 test:
   stage: test
