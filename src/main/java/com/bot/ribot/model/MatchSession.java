@@ -27,7 +27,7 @@ public class MatchSession {
     @JoinColumn(referencedColumnName = "user_id", nullable = false)
     private LineUser userFinder;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "user_id", nullable = true)
     private LineUser userRival;
 
@@ -39,7 +39,7 @@ public class MatchSession {
      */
     public MatchSession(LineUser userFinder, String gameType) {
         this.userFinder = userFinder;
-        this.userRival = null;
+        //this.userRival = null;
         this.gameTime = null;
         this.gamePlace = null;
         this.gameType = gameType;
