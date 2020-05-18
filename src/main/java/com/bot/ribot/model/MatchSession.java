@@ -2,17 +2,9 @@ package com.bot.ribot.model;
 
 import com.bot.ribot.handler.state.ActiveState;
 import com.bot.ribot.handler.state.UnregisteredState;
-import java.sql.Time;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "match_session")
@@ -26,7 +18,7 @@ public class MatchSession {
     private String gameType;
 
     @Column(name = "game_time")
-    private Time gameTime;
+    private Date gameTime;
 
     @Column(name = "game_place")
     private String gamePlace;
@@ -36,24 +28,20 @@ public class MatchSession {
     private LineUser userFinder;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(referencedColumnName = "user_id", nullable = true)
+    @JoinColumn(referencedColumnName = "user_id", nullable = false)
     private LineUser userRival;
 
     @Column(name = "state")
     private String state = UnregisteredState.DB_COL_NAME;
 
-    public MatchSession() {
-    }
-
     /**
      * Constructor for MatchSession.
      */
-    public MatchSession(LineUser userFinder, LineUser userRival, Time gameTime,
-                        String gamePlace, String gameType) {
+    public MatchSession(LineUser userFinder, String gameType) {
         this.userFinder = userFinder;
-        this.userRival = userRival;
-        this.gameTime = gameTime;
-        this.gamePlace = gamePlace;
+        this.userRival = userFinder;
+        this.gameTime = null;
+        this.gamePlace = null;
         this.gameType = gameType;
         this.state = ActiveState.DB_COL_NAME;
     }
@@ -106,11 +94,11 @@ public class MatchSession {
         return gameType;
     }
 
-    public void setGameTime(Time gameTime) {
+    public void setGameTime(Date gameTime) {
         this.gameTime = gameTime;
     }
 
-    public Time getGameTime() {
+    public Date getGameTime() {
         return gameTime;
     }
 

@@ -3,6 +3,7 @@ package com.bot.ribot.handler.state;
 import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.model.LineUser;
 import com.bot.ribot.repository.LineUserRepository;
+import com.bot.ribot.repository.MatchSessionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -22,14 +23,21 @@ public class ChooseGameStateTest {
     @Mock
     LineUserRepository lineUserRepository;
 
+    @Mock
+    MatchSessionRepository matchSessionRepository;
+
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         LineUser userQra = new LineUser("<3", "Qra");
+        //MatchSession match = new MatchSession(userQra, "Tinju");
         userQra.setState(ChooseGameState.DB_COL_NAME);
         when(lineUserRepository.findLineUserByUserId("<3")).thenReturn(
             userQra
         );
+//        when(matchSessionRepository.findMatchSessionAfterChooseGame("<3")).thenReturn(
+//                match
+//        );
     }
     
     @Test
@@ -45,7 +53,13 @@ public class ChooseGameStateTest {
 
     @Test
     public void makeSessionTest() {
-        responses = Messages.CHOOSE_GAME_WRONG_COMMAND;
+        StringBuilder messages = new StringBuilder();
+        messages.append("Perintah yang anda masukkan salah, Silahkan pilih game yang ingin anda mainkan :");
+        for(String game : Messages.availableGame){
+            messages.append("\n");
+            messages.append(game);
+        }
+        responses = messages.toString();
         assertEquals(responses, chooseGameState.makeSession("1810"));
     }
 

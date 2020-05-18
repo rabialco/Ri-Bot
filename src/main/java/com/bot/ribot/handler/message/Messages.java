@@ -1,7 +1,21 @@
 package com.bot.ribot.handler.message;
 
+import java.util.*;
+
 public class Messages {
-    //semua string cetak cetak simppan disini biar rapi
+    public static boolean isAvailableGame(String check){
+        for(String game : availableGame){
+            if(game.equalsIgnoreCase(check)){
+                return true;
+            }
+        }
+        return false;
+    }
+    //semua string cetak cetak simpan disini biar rapi
+
+    public static final ArrayList<String> availableGame = new ArrayList<String>(
+            Arrays.asList("Tenis Meja", "Catur", "Tinju", "Dota", "Mobile Legend")
+    );
 
     public static final String SHOW_SUMMARY_MESSAGE = "Summary sedang ditunjukkan!\n"
             + "Maaf command ini masih dalam tahap pengembangan";
@@ -13,14 +27,8 @@ public class Messages {
     public static final String ALREADY_REGISTERED = "Anda sudah terdaftar di Ri-Bot. "
             + "Silahkan masukkan perintah lain";
 
-    public static final String ACTIVE_STATE_MAKE_SESSION = "Silahkan pilih game "
-            + "yang ingin anda mainkan :\ntenis meja\ncatur\ntinju";
-
     public static final String ACTIVE_STATE_WRONG_COMMAND = "Perintah yang anda masukkan salah. "
             + "Silahkan buat game dengan perintah /makeSession";
-
-    public static final String CHOOSE_GAME_WRONG_COMMAND = "Perintah yang anda masukkan salah. "
-            + "Silahkan pilih game yang ingin anda mainkan : tenis meja\ncatir\ntinju";
     
     public static final String CHOOSE_GAME_SUCCESS =
             "Masukkan waktu bermain anda dengan format dd-MM-yyyy hh:mm";
@@ -44,5 +52,6 @@ public class Messages {
             + " sistem Ri-Bot. Silahkan masukkan perintah /register untuk mendaftar";
     
     public static final String REMIND_SUCCESSFUL = "Rival anda sudah diingatkan "
-            + "terkait game anda";
+            + "terkait game anda. "
+            + "Rival akan diingatkan kembali setiap 10 menit";
 }

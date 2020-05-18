@@ -2,12 +2,14 @@ package com.bot.ribot.handler.state;
 
 import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.model.LineUser;
+import com.bot.ribot.model.MatchSession;
+import org.springframework.stereotype.Component;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.springframework.stereotype.Component;
 
 
 @Component
@@ -24,7 +26,7 @@ public class ChooseTimeState extends State {
 
     private static Pattern dateTimePattern = Pattern.compile(
             "^(([1-9]|([012][0-9])|(3[01]))-([0]{0,1}[1-9]|1[012])-(19|20)[0-9]{2} "
-                    + "([0-1]?[0-9]|2?[0-3]):([0-5][0-9]))$");
+                    + "([0-1][0-9]|2[0-3]):([0-5][0-9]))$");
 
     private static SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("dd-MM-yyyy hh:mm");
 
@@ -44,9 +46,15 @@ public class ChooseTimeState extends State {
      */
     public String others(String userId, String command) throws ParseException {
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
-        //TO DO: Ganti if condition dengan -> command yang dimasukkan adalah waktu yang valid 
+        MatchSession match = matchSessionRepository.findMatchSessionAfterChooseGame(userId);
+        //TO DO: Ganti if condition dengan -> command yang dimasukkan adalah waktu yang valid
+
         if (isDateTimeValid(command)) {
             user.setState(PassiveState.DB_COL_NAME);
+            Date formattedDate = dateTimeFormatter.parse(command);
+            match.setGameTime(formattedDate);
+
+            matchSessionRepository.save(match);
             lineUserRepository.save(user);
             return Messages.CHOOSE_TIME_SUCCESS;
         } else {
