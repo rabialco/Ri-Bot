@@ -1,11 +1,17 @@
 package com.bot.ribot.handler.message;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class Messages {
-    public static boolean isAvailableGame(String check){
-        for(String game : availableGame){
-            if(game.equalsIgnoreCase(check)){
+    /**
+     * check whether the string is a valid game or not.
+     * return true if a valid game, false if others.
+     */
+    public static boolean isAvailableGame(String check) {
+        for (String game : availableGame) {
+            if (game.equalsIgnoreCase(check)) {
                 return true;
             }
         }

@@ -22,7 +22,7 @@ public class ActiveState extends State {
 
         StringBuilder messages = new StringBuilder();
         messages.append("Silahkan pilih game yang ingin anda mainkan :");
-        for(String game : Messages.availableGame){
+        for (String game : Messages.availableGame) {
             messages.append("\n");
             messages.append(game);
         }

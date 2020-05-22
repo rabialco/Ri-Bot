@@ -92,9 +92,9 @@ public class RiBotApplication extends SpringBootServletInitializer {
             case("/remindrival"):
                 jawaban = state.remindRival(userId);
                 break;
-//            case("/showAvailableSession"):
-//                jawaban = matchSessionRepository.findAvailableRival();
-//                break;
+            // case("/showAvailableSession"):
+            //     jawaban = matchSessionRepository.findAvailableRival();
+            //     break;
             default:
                 jawaban = state.others(userId, command);
         }
