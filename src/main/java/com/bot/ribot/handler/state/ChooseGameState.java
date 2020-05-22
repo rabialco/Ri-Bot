@@ -13,10 +13,14 @@ public class ChooseGameState extends State {
         return Messages.ALREADY_REGISTERED;
     }
 
+    /**
+    * Handle when user's input /makesession command.
+    */
     public String makeSession(String userId) {
         StringBuilder messages = new StringBuilder();
-        messages.append("Perintah yang anda masukkan salah, Silahkan pilih game yang ingin anda mainkan :");
-        for(String game : Messages.availableGame){
+        messages.append("Perintah yang anda masukkan salah, "
+                + "Silahkan pilih game yang ingin anda mainkan :");
+        for (String game : Messages.availableGame) {
             messages.append("\n");
             messages.append(game);
         }
@@ -29,12 +33,13 @@ public class ChooseGameState extends State {
     public String others(String userId, String command) {
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         //TO DO: true diganti command yang dimasukkan adalah permainan yang diperbolehkan
-        //TextMessage textMessage = new TextMessage(command + " " + Messages.availableGame.toString());
-        //lineMessagingClient.pushMessage(new PushMessage("U736daa71fa827df41b58e025e71dbc44", textMessage));
+        //String idSalman = "U736daa71fa827df41b58e025e71dbc44"
+        //TextMessage textMessage = new TextMessage(command+" "+Messages.availableGame.toString());
+        //lineMessagingClient.pushMessage(new PushMessage(idSalman, textMessage));
         if (Messages.isAvailableGame(command)) {
             user.setState(ChooseTimeState.DB_COL_NAME);
             lineUserRepository.save(user);
-            try{
+            try {
                 MatchSession match = new MatchSession(user, command);
                 matchSessionRepository.save(match);
                 return Messages.CHOOSE_GAME_SUCCESS;
@@ -43,8 +48,9 @@ public class ChooseGameState extends State {
             }
         } else {
             StringBuilder messages = new StringBuilder();
-            messages.append("Perintah yang anda masukkan salah, Silahkan pilih game yang ingin anda mainkan :");
-            for(String game : Messages.availableGame){
+            messages.append("Perintah yang anda masukkan salah, Silahkan pilih game"
+                        + "yang ingin anda mainkan :");
+            for (String game : Messages.availableGame) {
                 messages.append("\n");
                 messages.append(game);
             }
