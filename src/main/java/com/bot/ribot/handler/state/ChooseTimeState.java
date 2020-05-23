@@ -3,6 +3,8 @@ package com.bot.ribot.handler.state;
 import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.model.LineUser;
 import com.bot.ribot.model.MatchSession;
+import com.linecorp.bot.model.PushMessage;
+import com.linecorp.bot.model.message.TextMessage;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -55,6 +57,11 @@ public class ChooseTimeState extends State {
             Date formattedDate = dateTimeFormatter.parse(command);
             match.setGameTime(formattedDate);
 
+            String idSalman = "U736daa71fa827df41b58e025e71dbc44";
+            TextMessage textMessage = new TextMessage(match.getGameTime()
+                        + " " + match.getUserFinder());
+            lineMessagingClient.pushMessage(new PushMessage(idSalman, textMessage));
+            
             matchSessionRepository.save(match);
             lineUserRepository.save(user);
             return Messages.CHOOSE_TIME_SUCCESS;
