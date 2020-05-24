@@ -43,6 +43,9 @@ public class MatchSession {
     @Column(name = "state")
     private String state = UnregisteredState.DB_COL_NAME;
 
+    public MatchSession() {
+    }
+    
     /**
      * Constructor for MatchSession.
      */
