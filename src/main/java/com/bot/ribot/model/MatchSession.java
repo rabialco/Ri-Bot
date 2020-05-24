@@ -2,6 +2,8 @@ package com.bot.ribot.model;
 
 import com.bot.ribot.handler.state.ActiveState;
 import com.bot.ribot.handler.state.UnregisteredState;
+import com.bot.ribot.repository.LineUserRepository;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Entity
@@ -42,6 +45,9 @@ public class MatchSession {
 
     @Column(name = "state")
     private String state = UnregisteredState.DB_COL_NAME;
+
+    @Autowired
+    LineUserRepository lineUserRepository;
 
     public MatchSession() {
     }
@@ -116,6 +122,23 @@ public class MatchSession {
 
     public Long getMatchId() {
         return matchId;
+    }
+    
+    /**
+    * Use to make own print value of matchSession object.
+    */
+    
+    public String toString() {
+        String cetak = "";
+        
+        cetak = cetak.concat("ID match ini adalah : " + matchId + "\n");
+        cetak = cetak.concat("Dibuat oleh user : " + userFinder.getDisplayName() + "\n");
+        cetak = cetak.concat("Game yang akan dimainkan: " + gameType + "\n");
+
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+        cetak = cetak.concat("Akan dimainkan pada: " + formatter.format(gameTime) + "\n");
+
+        return cetak;
     }
 
 }
