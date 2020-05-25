@@ -49,31 +49,25 @@ public class ChooseTimeState extends State {
      */
     public String others(String userId, String command) throws ParseException {
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
-        try{
-            MatchSession match = matchSessionRepository.findMatchSessionAfterChooseGame(userId);
+        MatchSession match = matchSessionRepository.findMatchSessionAfterChooseGame(userId);
 
-            //TO DO: Ganti if condition dengan -> command yang dimasukkan adalah waktu yang valid
+        //TO DO: Ganti if condition dengan -> command yang dimasukkan adalah waktu yang valid
 
-            if (isDateTimeValid(command)) {
-                user.setState(PassiveState.DB_COL_NAME);
-                Date formattedDate = dateTimeFormatter.parse(command);
-                match.setGameTime(formattedDate);
+        if (isDateTimeValid(command)) {
+            user.setState(PassiveState.DB_COL_NAME);
+            Date formattedDate = dateTimeFormatter.parse(command);
+            match.setGameTime(formattedDate);
 
-                String idSalman = "U736daa71fa827df41b58e025e71dbc44";
-                TextMessage textMessage = new TextMessage(match.getGameTime()
-                            + " " + match.getUserFinder());
-                lineMessagingClient.pushMessage(new PushMessage(idSalman, textMessage));
-                
-                matchSessionRepository.save(match);
-                lineUserRepository.save(user);
-                return Messages.CHOOSE_TIME_SUCCESS;
-            } else {
-                return Messages.CHOOSE_TIME_WRONG_COMMAND;
-            }
-        } catch (Exception e) {
-            return e.toString();
+            String idSalman = "U736daa71fa827df41b58e025e71dbc44";
+            TextMessage textMessage = new TextMessage(match.getGameTime()
+                        + " " + match.getUserFinder());
+            lineMessagingClient.pushMessage(new PushMessage(idSalman, textMessage));
+            
+            matchSessionRepository.save(match);
+            lineUserRepository.save(user);
+            return Messages.CHOOSE_TIME_SUCCESS;
+        } else {
+            return Messages.CHOOSE_TIME_WRONG_COMMAND;
         }
-        
-        
     }
 }

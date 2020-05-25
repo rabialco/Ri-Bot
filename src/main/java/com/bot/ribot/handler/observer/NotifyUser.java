@@ -2,6 +2,7 @@ package com.bot.ribot.handler.observer;
 
 import com.bot.ribot.handler.state.ActiveState;
 import com.bot.ribot.model.LineUser;
+import com.bot.ribot.model.MatchSession;
 import com.bot.ribot.repository.LineUserRepository;
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.PushMessage;
@@ -18,11 +19,28 @@ public class NotifyUser {
     @Autowired
     private LineMessagingClient lineMessagingClient;
 
-    //TO DO: ini bakal diganti object match session
-    private String newMatchSession;
+    private static NotifyUser notifyUser = null;
 
-    public void setNewMatchSession(String newMatchSession) {
+    // TO DO: ini bakal diganti object match session
+    private MatchSession newMatchSession;
+
+    private NotifyUser(){
+
+    }
+
+    /**
+     * Singleton implementation.
+     */
+    public static NotifyUser getInstance() {
+        if (notifyUser == null) {
+            notifyUser = new NotifyUser();
+        }
+        return notifyUser;
+    }
+
+    public void setNewMatchSession(MatchSession newMatchSession) {
         this.newMatchSession = newMatchSession;
+        this.notifyActiveUser();
     }
 
     /** 
@@ -34,7 +52,7 @@ public class NotifyUser {
         for (LineUser lineUser : lineUsers) {
             String userState = lineUser.getState();
             if (userState.equals(ActiveState.DB_COL_NAME)) {
-                TextMessage textMessage = new TextMessage(newMatchSession);
+                TextMessage textMessage = new TextMessage(newMatchSession.toString());
                 lineMessagingClient.pushMessage(new PushMessage(lineUser.getUserId(), textMessage));
             }
         }
