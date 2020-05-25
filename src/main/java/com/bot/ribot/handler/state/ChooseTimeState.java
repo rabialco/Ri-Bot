@@ -57,11 +57,6 @@ public class ChooseTimeState extends State {
             user.setState(PassiveState.DB_COL_NAME);
             Date formattedDate = dateTimeFormatter.parse(command);
             match.setGameTime(formattedDate);
-
-            String idSalman = "U736daa71fa827df41b58e025e71dbc44";
-            TextMessage textMessage = new TextMessage(match.getGameTime()
-                        + " " + match.getUserFinder());
-            lineMessagingClient.pushMessage(new PushMessage(idSalman, textMessage));
             
             matchSessionRepository.save(match);
             lineUserRepository.save(user);
