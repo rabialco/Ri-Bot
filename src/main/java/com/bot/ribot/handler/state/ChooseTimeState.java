@@ -1,6 +1,7 @@
 package com.bot.ribot.handler.state;
 
 import com.bot.ribot.handler.message.Messages;
+import com.bot.ribot.handler.observer.NotifyUser;
 import com.bot.ribot.model.LineUser;
 import com.bot.ribot.model.MatchSession;
 import com.linecorp.bot.model.PushMessage;
@@ -60,6 +61,9 @@ public class ChooseTimeState extends State {
             
             matchSessionRepository.save(match);
             lineUserRepository.save(user);
+            NotifyUser notifyUser = new NotifyUser();
+            notifyUser.setNewMatchSession(match);
+
             return Messages.CHOOSE_TIME_SUCCESS;
         } else {
             return Messages.CHOOSE_TIME_WRONG_COMMAND;

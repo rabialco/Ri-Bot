@@ -60,11 +60,11 @@ public class LineUser {
         this.state = state;
     }
 
-    public Boolean getGetNotification(){
+    public Boolean getGetNotification() {
         return this.getNotification;
     }
 
-    public void setGetNotification(Boolean getNotification){
+    public void setGetNotification(Boolean getNotification) {
         this.getNotification = getNotification;
     }
 }
