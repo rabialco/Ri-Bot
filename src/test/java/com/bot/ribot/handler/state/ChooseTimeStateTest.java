@@ -58,9 +58,9 @@ public class ChooseTimeStateTest {
         assertEquals(responses, chooseTimeState.makeSession("1810"));
     }
 
-    //  @Test
-    //  public void othersTest() throws Exception {
-    //      responses = Messages.CHOOSE_TIME_SUCCESS;
-    //      assertEquals(responses, chooseTimeState.others("<3", "14-12-2020 13:00"));
-    //  }
+     @Test
+     public void othersTest() throws Exception {
+         responses = Messages.CHOOSE_TIME_SUCCESS;
+         assertEquals(responses, chooseTimeState.others("<3", "14-12-2020 13:00"));
+     }
 }
