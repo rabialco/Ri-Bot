@@ -2,7 +2,6 @@ package com.bot.ribot.model;
 
 import com.bot.ribot.handler.state.ActiveState;
 import com.bot.ribot.handler.state.UnregisteredState;
-import com.bot.ribot.repository.LineUserRepository;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -45,9 +44,6 @@ public class MatchSession {
 
     @Column(name = "state")
     private String state = UnregisteredState.DB_COL_NAME;
-
-    @Autowired
-    LineUserRepository lineUserRepository;
 
     public MatchSession() {
     }
