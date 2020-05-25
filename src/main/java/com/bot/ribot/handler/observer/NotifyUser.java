@@ -19,28 +19,16 @@ public class NotifyUser {
     @Autowired
     private LineMessagingClient lineMessagingClient;
 
-    private static NotifyUser notifyUser = null;
-
     // TO DO: ini bakal diganti object match session
     private MatchSession newMatchSession;
 
-    private NotifyUser(){
+    public NotifyUser(){
 
     }
 
-    /**
-     * Singleton implementation.
-     */
-    public static NotifyUser getInstance() {
-        if (notifyUser == null) {
-            notifyUser = new NotifyUser();
-        }
-        return notifyUser;
-    }
-
-    public void setNewMatchSession(MatchSession newMatchSession) {
-        this.newMatchSession = newMatchSession;
-        this.notifyActiveUser();
+    public void setNewMatchSession(MatchSession matchSession) {
+        this.newMatchSession = matchSession;
+        notifyActiveUser();
     }
 
     /** 
@@ -49,10 +37,11 @@ public class NotifyUser {
     */
     public void notifyActiveUser() {
         List<LineUser> lineUsers = lineUserRepository.findAllLineUser();
+        String greetings = "Telah dibuat match baru:\n";
         for (LineUser lineUser : lineUsers) {
-            String userState = lineUser.getState();
-            if (userState.equals(ActiveState.DB_COL_NAME)) {
-                TextMessage textMessage = new TextMessage(newMatchSession.toString());
+            Boolean userGetNotification = lineUser.getGetNotification();
+            if (userGetNotification) {
+                TextMessage textMessage = new TextMessage(greetings + newMatchSession.toString());
                 lineMessagingClient.pushMessage(new PushMessage(lineUser.getUserId(), textMessage));
             }
         }
