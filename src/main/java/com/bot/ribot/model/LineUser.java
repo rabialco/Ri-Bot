@@ -20,6 +20,9 @@ public class LineUser {
     @Column(name = "state")
     private String state = UnregisteredState.DB_COL_NAME;
 
+    @Column(name = "get_notification")
+    private Boolean getNotification;
+
     public LineUser() {
     }
 
@@ -30,6 +33,7 @@ public class LineUser {
         this.userId = userId;
         this.displayName = displayName;
         this.state = ActiveState.DB_COL_NAME;
+        this.getNotification = false;
     }
 
     public String getUserId() {
@@ -52,7 +56,15 @@ public class LineUser {
         return this.state;
     }
 
-    public void setState(String settingDebtState) {
-        this.state = settingDebtState;
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Boolean getGetNotification(){
+        return this.getNotification;
+    }
+
+    public void setGetNotification(Boolean getNotification){
+        this.getNotification = getNotification;
     }
 }
