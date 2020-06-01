@@ -26,6 +26,17 @@ package com.bot.ribot.repository;
 //        MatchSessionRepository.class})
 //@DataJpaTest
 
+//import com.bot.ribot.model.LineUser;
+//import com.bot.ribot.model.MatchSession;
+//import org.junit.jupiter.api.Test;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+//
+//import java.sql.Time;
+//
+//import static org.assertj.core.api.Assertions.assertThat;
+
+
 public class MatchSessionTest {
     // To Be Implemented
 //    @Autowired
@@ -36,7 +47,7 @@ public class MatchSessionTest {
 //
 //    @Test
 //    public void findLineUserByFinderUserId() {
-//        // given
+        // given
 //        LineUser userFinder = new LineUser("1", "rabi");
 //        entityManager.persist(userFinder);
 //        LineUser userRival = new LineUser("2", "alco");
@@ -44,8 +55,7 @@ public class MatchSessionTest {
 //        String gamePlace = "Rumah";
 //        String gameType = "Tenis Meja";
 //        Time gameTime = new Time(System.currentTimeMillis());
-//        MatchSession matchSession = new MatchSession(userFinder, userRival,
-//                gameTime, gamePlace, gameType);
+//        MatchSession matchSession = new MatchSession(userFinder, gameType);
 //        entityManager.merge(matchSession);
 //        entityManager.flush();
 //
@@ -55,7 +65,7 @@ public class MatchSessionTest {
 //        assertThat(found.getGameType())
 //                .isEqualTo(matchSession.getGameType());
 //    }
-//
+
 //    @Test
 //    public void findLineUserByRivalId() {
 //        // To Be Implement
@@ -66,13 +76,12 @@ public class MatchSessionTest {
 //        String gamePlace = "Rumah";
 //        String gameType = "Tenis Meja";
 //        Time gameTime = new Time(System.currentTimeMillis());
-//        MatchSession matchSession = new MatchSession(userFinder, userRival,
-//                gameTime, gamePlace, gameType);
+//        MatchSession matchSession = new MatchSession(userFinder, gameType);
 //        entityManager.merge(matchSession);
 //        entityManager.flush();
 //
 //        MatchSession found = matchSessionRepo.
-//                findLineUserByFinderUserId(userRival.getUserId());
+//                findLineUserByFinderUserId(userFinder.getUserId());
 //
 //        assertThat(found.getGameType())
 //                .isEqualTo(matchSession.getGameType());
