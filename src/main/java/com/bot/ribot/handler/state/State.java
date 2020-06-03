@@ -35,12 +35,12 @@ public abstract class State {
         return Messages.REMIND_SUCCESSFUL;
     }
 
-    public String toggleGetNotification(String userId){
+    public String toggleGetNotification(String userId) {
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         String tambahan = " ";
         Boolean getNotification = user.getGetNotification();
 
-        if(getNotification){
+        if (getNotification) {
             tambahan = " tidak";
         }
         
