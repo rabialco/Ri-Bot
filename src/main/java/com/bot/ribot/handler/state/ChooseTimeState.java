@@ -52,9 +52,8 @@ public class ChooseTimeState extends State {
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         MatchSession match = matchSessionRepository.findMatchSessionAfterChooseGame(userId);
 
-        //TO DO: Ganti if condition dengan -> command yang dimasukkan adalah waktu yang valid
-
         if (isDateTimeValid(command)) {
+
             user.setState(PassiveState.DB_COL_NAME);
             Date formattedDate = dateTimeFormatter.parse(command);
             match.setGameTime(formattedDate);
@@ -64,7 +63,7 @@ public class ChooseTimeState extends State {
             NotifyUser notifyUser = new NotifyUser();
             notifyUser.setNewMatchSession(match);
 
-            return Messages.CHOOSE_TIME_SUCCESS;
+            return match + "\n" + Messages.CHOOSE_TIME_SUCCESS ;
         } else {
             return Messages.CHOOSE_TIME_WRONG_COMMAND;
         }
