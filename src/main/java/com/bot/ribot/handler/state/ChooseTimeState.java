@@ -66,7 +66,7 @@ public class ChooseTimeState extends State {
             return "Tipe game: " + match.getGameType() + "\n"
                     + "Waktu main: " + match.getGameTime() + "\n"
                     + "Lokasi: " + match.getGamePlace() + "\n"
-                    + Messages.CHOOSE_TIME_SUCCESS ;
+                    + Messages.CHOOSE_TIME_SUCCESS;
         } else {
             return Messages.CHOOSE_TIME_WRONG_COMMAND;
         }
