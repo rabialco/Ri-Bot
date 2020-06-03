@@ -27,7 +27,7 @@ public class Messages {
             + "Maaf command ini masih dalam tahap pengembangan";
 
     public static final String SHOW_MENU_MESSAGE = "Command Menu :\n1. /register\n2. /makeSession\n"
-            + "3. /remindRival\n4. /showSummary\n5. /showAvailableSession\n"
+            + "3. /remindRival\n4. /showSummary\n5. /showAvailableSession\n6./toggleNotification"
             + "Untuk memunculkan menu ini lagi ketik: \n/showMenu";
 
     public static final String ALREADY_REGISTERED = "Anda sudah terdaftar di Ri-Bot. "
@@ -60,4 +60,7 @@ public class Messages {
     public static final String REMIND_SUCCESSFUL = "Rival anda sudah diingatkan "
             + "terkait game anda. "
             + "Rival akan diingatkan kembali setiap 10 menit";
+
+    public static final String TOGGLE_SUCCESSFUL = "Toggle notifikasi berhasil"
+            + "anda saat ini";
 }

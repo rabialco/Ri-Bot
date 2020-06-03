@@ -41,6 +41,7 @@ public class RiBotApplication extends SpringBootServletInitializer {
 
     @Autowired
     private MatchSessionRepository matchSessionRepository;
+    
 
     LogManager lgmngr = LogManager.getLogManager();
     Logger log = lgmngr.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -91,6 +92,9 @@ public class RiBotApplication extends SpringBootServletInitializer {
                 break;
             case("/remindrival"):
                 jawaban = state.remindRival(userId);
+                break;
+            case("/toggleNotification"):
+                jawaban = state.toggleGetNotification(userId);
                 break;
             // case("/showAvailableSession"):
             //     jawaban = matchSessionRepository.findAvailableRival();
