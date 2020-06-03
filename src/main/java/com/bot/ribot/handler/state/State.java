@@ -34,4 +34,17 @@ public abstract class State {
         //tambahin fungsi buat kirim pesan ke rival (pakenya push messages)
         return Messages.REMIND_SUCCESSFUL;
     }
+
+    public String toggleGetNotification(String userId){
+        LineUser user = lineUserRepository.findLineUserByUserId(userId);
+        String tambahan = " ";
+        Boolean getNotification = user.getGetNotification();
+
+        if(getNotification){
+            tambahan = " tidak";
+        }
+        
+        user.setGetNotification(!getNotification);
+        return Messages.TOGGLE_SUCCESSFUL + tambahan + " akan mendapatkan notifikasi";
+    }
 }
