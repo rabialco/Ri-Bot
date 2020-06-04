@@ -28,7 +28,7 @@ public class Messages {
             + "Maaf command ini masih dalam tahap pengembangan";
 
     public static final String SHOW_MENU_MESSAGE = "Command Menu :\n1. /register\n2. /makeSession\n"
-            + "3. /remindRival\n4. /showSummary\n5. /showAvailableSession\n6./toggleNotification"
+            + "3. /remindRival\n4. /showSummary\n5. /showAvailableSession\n"
             + "Untuk memunculkan menu ini lagi ketik: \n/showMenu";
 
     public static final String ALREADY_REGISTERED = "Anda sudah terdaftar di Ri-Bot. "
@@ -66,14 +66,15 @@ public class Messages {
             + "anda saat ini";
 
     /**
-     * Method for print summary after new match has been
-     * created succesfully.
-     */
+    * Method for print summary after new match has been
+    * created succesfully.
+    */
     public static final String createMatchSuccess(MatchSession newMatch) {
         return "Permainan berhasil dibuat!" + "\n" + "\n"
-                + "Tipe game: " + newMatch.getGameType() + "\n"
-                + "Waktu main: " + newMatch.getGameTime() + "\n"
-                + "Lokasi: " + newMatch.getGamePlace() + "\n" + "\n"
-                + "Gunakan command /finish untuk menyelesaikan permainan.";
+                        + "Tipe game: " + newMatch.getGameType() + "\n"
+                        + "Waktu main: " + newMatch.getGameTime() + "\n"
+                        + "Lokasi: " + newMatch.getGamePlace() + "\n" + "\n"
+                        + "Gunakan command /finish untuk menyelesaikan permainan.";
     }
+
 }

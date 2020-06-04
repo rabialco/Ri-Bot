@@ -35,8 +35,10 @@ public abstract class State {
         return Messages.REMIND_SUCCESSFUL;
     }
 
+    /**
+     * Handle to toggle and Get Notification.
+     */
     public String toggleGetNotification(String userId) {
-        //TODO: fix checkstyle error (1 more)
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         String tambahan = " ";
         Boolean getNotification = user.getGetNotification();

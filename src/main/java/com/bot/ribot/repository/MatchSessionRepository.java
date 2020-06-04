@@ -1,6 +1,7 @@
 package com.bot.ribot.repository;
 
 import com.bot.ribot.model.MatchSession;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -22,4 +23,8 @@ public interface MatchSessionRepository extends JpaRepository<MatchSession, Stri
     @Query(value = "SELECT * FROM MATCH_SESSION WHERE USER_FINDER_USER_ID = ?1 "
             + "AND GAME_TIME IS NULL", nativeQuery = true)
     MatchSession findMatchSessionAfterChooseGame(String userID);
+
+    @Query(value = "SELECT * FROM MATCH_SESSION WHERE "
+            + "USER_FINDER_USER_ID = USER_FINDER_RIVAL_ID", nativeQuery = true)
+    List<MatchSession> findAvailableSession();
 }
