@@ -38,7 +38,13 @@ public class NotifyUser {
     public void notifyActiveUser() {
         List<LineUser> lineUsers = lineUserRepository.findAllLineUser();
         String greetings = "Telah dibuat match baru:\n";
+        
+        TextMessage text = new TextMessage("berhasil masuk");
+        lineMessagingClient.pushMessage(new PushMessage("U736daa71fa827df41b58e025e71dbc44", text));
         for (LineUser lineUser : lineUsers) {
+            text = new TextMessage("isi " + lineUser.getDisplayName());
+            lineMessagingClient.pushMessage(
+                    new PushMessage("U736daa71fa827df41b58e025e71dbc44", text));
             Boolean userGetNotification = lineUser.getGetNotification();
             if (userGetNotification) {
                 TextMessage textMessage = new TextMessage(greetings + newMatchSession.toString());

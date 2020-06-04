@@ -3,7 +3,6 @@ package com.bot.ribot;
 import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.handler.state.State;
 import com.bot.ribot.handler.state.helper.StateHelper;
-import com.bot.ribot.model.MatchSession;
 import com.bot.ribot.repository.LineUserRepository;
 import com.bot.ribot.repository.MatchSessionRepository;
 import com.linecorp.bot.client.LineMessagingClient;
@@ -41,6 +40,7 @@ public class RiBotApplication extends SpringBootServletInitializer {
 
     @Autowired
     private MatchSessionRepository matchSessionRepository;
+    
 
     LogManager lgmngr = LogManager.getLogManager();
     Logger log = lgmngr.getLogger(Logger.GLOBAL_LOGGER_NAME);
