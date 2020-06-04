@@ -35,8 +35,10 @@ public abstract class State {
         return Messages.REMIND_SUCCESSFUL;
     }
 
+    /**
+     * Handle when users want to receive match notification or not.
+     */
     public String toggleGetNotification(String userId) {
-        //TODO: fix checkstyle error (1 more)
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         String tambahan = " ";
         Boolean getNotification = user.getGetNotification();
