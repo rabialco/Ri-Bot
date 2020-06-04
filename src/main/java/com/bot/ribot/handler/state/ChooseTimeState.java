@@ -54,16 +54,21 @@ public class ChooseTimeState extends State {
 
         if (isDateTimeValid(command)) {
 
-            user.setState(PassiveState.DB_COL_NAME);
-            Date formattedDate = dateTimeFormatter.parse(command);
-            match.setGameTime(formattedDate);
-            
-            matchSessionRepository.save(match);
-            lineUserRepository.save(user);
-            NotifyUser notifyUser = new NotifyUser();
-            notifyUser.setNewMatchSession(match);
+            try{
+                user.setState(PassiveState.DB_COL_NAME);
+                Date formattedDate = dateTimeFormatter.parse(command);
+                match.setGameTime(formattedDate);
+                
+                matchSessionRepository.save(match);
+                lineUserRepository.save(user);
+                NotifyUser notifyUser = new NotifyUser();
+                notifyUser.setNewMatchSession(match);
 
-            return Messages.createMatchSuccess(match);
+                return Messages.createMatchSuccess(match);
+            } catch (Exception e) {
+                return e.toString();
+            }
+            
         } else {
             return Messages.CHOOSE_TIME_WRONG_COMMAND;
         }
