@@ -36,7 +36,6 @@ public abstract class State {
     }
 
     public String toggleGetNotification(String userId) {
-        //TODO: fix checkstyle error (1 more)
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         String tambahan = " ";
         Boolean getNotification = user.getGetNotification();
