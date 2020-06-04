@@ -93,6 +93,9 @@ public class RiBotApplication extends SpringBootServletInitializer {
             case("/remindrival"):
                 jawaban = state.remindRival(userId);
                 break;
+            case("/toggleNotification"):
+                jawaban = state.toggleGetNotification(userId);
+                break;
             case("/showAvailableSession"):
                 int number = 1;
                 String tmp = "";
