@@ -21,7 +21,7 @@ public class Messages {
     //semua string cetak cetak simpan disini biar rapi
 
     public static final ArrayList<String> availableGame = new ArrayList<String>(
-            Arrays.asList("Tenis Meja", "Catur", "Tinju", "Dota", "Mobile Legend")
+            Arrays.asList("Tenis Meja", "Catur", "Tinju", "Dota", "Mobile Legends")
     );
 
     public static final String SHOW_SUMMARY_MESSAGE = "Summary sedang ditunjukkan!\n"
