@@ -20,7 +20,7 @@ public class Messages {
     //semua string cetak cetak simpan disini biar rapi
 
     public static final ArrayList<String> availableGame = new ArrayList<String>(
-            Arrays.asList("Tenis Meja", "Catur", "Tinju", "Dota", "Mobile Legend")
+            Arrays.asList("Tenis Meja", "Catur", "Tinju", "Dota", "Mobile Legends")
     );
 
     public static final String SHOW_SUMMARY_MESSAGE = "Summary sedang ditunjukkan!\n"
@@ -60,4 +60,8 @@ public class Messages {
     public static final String REMIND_SUCCESSFUL = "Rival anda sudah diingatkan "
             + "terkait game anda. "
             + "Rival akan diingatkan kembali setiap 10 menit";
+
+    public static final String TOGGLE_SUCCESSFUL = "Toggle notifikasi berhasil"
+            + "anda saat ini";
+
 }
