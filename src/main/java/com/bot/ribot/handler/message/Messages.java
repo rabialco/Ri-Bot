@@ -1,5 +1,6 @@
 package com.bot.ribot.handler.message;
 
+import com.bot.ribot.model.MatchSession;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -63,5 +64,17 @@ public class Messages {
 
     public static final String TOGGLE_SUCCESSFUL = "Toggle notifikasi berhasil"
             + "anda saat ini";
+
+        /**
+         * Method for print summary after new match has been
+         * created succesfully.
+         */
+        public static final String createMatchSuccess(MatchSession newMatch) {
+                return "Permainan berhasil dibuat!" + "\n" + "\n"
+                        + "Tipe game: " + newMatch.getGameType() + "\n"
+                        + "Waktu main: " + newMatch.getGameTime() + "\n"
+                        + "Lokasi: " + newMatch.getGamePlace() + "\n" + "\n"
+                        + "Gunakan command /finish untuk menyelesaikan permainan.";
+        }
 
 }

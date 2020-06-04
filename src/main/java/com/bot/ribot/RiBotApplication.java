@@ -3,6 +3,7 @@ package com.bot.ribot;
 import com.bot.ribot.handler.message.Messages;
 import com.bot.ribot.handler.state.State;
 import com.bot.ribot.handler.state.helper.StateHelper;
+import com.bot.ribot.model.MatchSession;
 import com.bot.ribot.repository.LineUserRepository;
 import com.bot.ribot.repository.MatchSessionRepository;
 import com.linecorp.bot.client.LineMessagingClient;
@@ -92,9 +93,17 @@ public class RiBotApplication extends SpringBootServletInitializer {
             case("/remindrival"):
                 jawaban = state.remindRival(userId);
                 break;
-            // case("/showAvailableSession"):
-            //     jawaban = matchSessionRepository.findAvailableRival();
-            //     break;
+            case("/showAvailableSession"):
+                int number = 1;
+                String tmp = "";
+                for (MatchSession i :
+                    matchSessionRepository.findAvailableSession()) {
+                    tmp += number + ". Match ID = " + i.getMatchId()
+                             + ", Game Type = " + i.getGameType() + "\n";
+                    number++;
+                }
+                jawaban = tmp;
+                break;
             default:
                 jawaban = state.others(userId, command);
         }

@@ -35,6 +35,9 @@ public abstract class State {
         return Messages.REMIND_SUCCESSFUL;
     }
 
+    /**
+     * Handle to toggle and Get Notification.
+     */
     public String toggleGetNotification(String userId) {
         LineUser user = lineUserRepository.findLineUserByUserId(userId);
         String tambahan = " ";
